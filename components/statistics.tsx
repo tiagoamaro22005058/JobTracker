@@ -34,8 +34,8 @@ const tooltipStyle = {
   border: '1px solid var(--border)',
   background: 'var(--surface)',
   color: 'var(--text)',
-  borderRadius: 10,
-  fontSize: 13,
+  borderRadius: 0,
+  fontSize: 14,
 };
 export function Statistics() {
   const { applications, loading, error, reload } = useApplications();
@@ -123,8 +123,8 @@ export function Statistics() {
                   <AreaChart data={days} margin={{ top: 15, right: 20, left: -25, bottom: 0 }}>
                     <defs>
                       <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#329883" stopOpacity={0.2} />
-                        <stop offset="100%" stopColor="#329883" stopOpacity={0.01} />
+                        <stop offset="0%" stopColor="var(--accent)" stopOpacity={0.2} />
+                        <stop offset="100%" stopColor="var(--accent)" stopOpacity={0.01} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="var(--border)" />
@@ -146,7 +146,7 @@ export function Statistics() {
                       name="Applications"
                       type="monotone"
                       dataKey="applications"
-                      stroke="#329883"
+                      stroke="var(--accent)"
                       strokeWidth={2.5}
                       fill="url(#areaFill)"
                     />
@@ -188,8 +188,8 @@ export function Statistics() {
                     <Bar
                       name="Applications"
                       dataKey="applications"
-                      fill="#329883"
-                      radius={[5, 5, 0, 0]}
+                      fill="var(--accent)"
+                      radius={0}
                       maxBarSize={44}
                     />
                   </BarChart>
@@ -229,12 +229,7 @@ export function Statistics() {
                         cursor={{ fill: 'var(--surface-hover)' }}
                         contentStyle={tooltipStyle}
                       />
-                      <Bar
-                        name="Applications"
-                        dataKey="count"
-                        radius={[0, 4, 4, 0]}
-                        maxBarSize={17}
-                      >
+                      <Bar name="Applications" dataKey="count" radius={0} maxBarSize={17}>
                         {byStatus.map((s) => (
                           <Cell key={s.name} fill={s.color} />
                         ))}
