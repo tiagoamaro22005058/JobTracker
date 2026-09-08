@@ -1,0 +1,8 @@
+.env*
+!.env.example
+.git
+.next
+.vercel
+node_modules
+*.tsbuildinfo
+*.log
