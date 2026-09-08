@@ -48,10 +48,10 @@ export function Workspace({ allApplications = false }: { allApplications?: boole
       <div className="page-heading">
         <div>
           <div className="eyebrow">
-            {allApplications ? 'APPLICATION MANAGER' : 'WORKSPACE OVERVIEW'}
+            {allApplications ? 'YOUR OPPORTUNITIES, ORGANIZED' : 'MAKE YOUR NEXT MOVE'}
           </div>
           <h1>
-            {allApplications ? 'Applications' : `Welcome back, ${name.split(' ')[0]}.`}
+            {allApplications ? 'Applications' : `Let’s move forward, ${name.split(' ')[0]}.`}
             <span className="heading-dot" />
           </h1>
           <p>

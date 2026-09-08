@@ -16,26 +16,26 @@ import { localDate, summarize } from '@/lib/applications';
 import { STATUSES } from '@/types/application';
 import { SummaryCards } from './summary-cards';
 const colors = [
-  '#928471',
-  '#8b9a89',
-  '#baa06b',
-  '#a48b95',
-  '#937d8a',
-  '#817582',
-  '#81998f',
-  '#b89590',
-  '#909a6c',
-  '#75845d',
-  '#b27e68',
-  '#9c9387',
-  '#a18b72',
+  '#64748b',
+  '#4c8df6',
+  '#daaa37',
+  '#9b78d6',
+  '#8160cb',
+  '#5967cb',
+  '#299baa',
+  '#c86aa7',
+  '#42a17b',
+  '#228762',
+  '#d87d78',
+  '#8c94a3',
+  '#a38e7b',
 ];
 const tooltipStyle = {
   border: '1px solid var(--border)',
   background: 'var(--surface)',
   color: 'var(--text)',
-  borderRadius: 9,
-  fontSize: 14,
+  borderRadius: 10,
+  fontSize: 13,
 };
 export function Statistics() {
   const { applications, loading, error, reload } = useApplications();
@@ -123,8 +123,8 @@ export function Statistics() {
                   <AreaChart data={days} margin={{ top: 15, right: 20, left: -25, bottom: 0 }}>
                     <defs>
                       <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="var(--accent)" stopOpacity={0.2} />
-                        <stop offset="100%" stopColor="var(--accent)" stopOpacity={0.01} />
+                        <stop offset="0%" stopColor="#329883" stopOpacity={0.2} />
+                        <stop offset="100%" stopColor="#329883" stopOpacity={0.01} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="4 4" vertical={false} stroke="var(--border)" />
@@ -146,7 +146,7 @@ export function Statistics() {
                       name="Applications"
                       type="monotone"
                       dataKey="applications"
-                      stroke="var(--accent)"
+                      stroke="#329883"
                       strokeWidth={2.5}
                       fill="url(#areaFill)"
                     />
@@ -188,8 +188,8 @@ export function Statistics() {
                     <Bar
                       name="Applications"
                       dataKey="applications"
-                      fill="var(--accent)"
-                      radius={4}
+                      fill="#329883"
+                      radius={[5, 5, 0, 0]}
                       maxBarSize={44}
                     />
                   </BarChart>
@@ -229,7 +229,12 @@ export function Statistics() {
                         cursor={{ fill: 'var(--surface-hover)' }}
                         contentStyle={tooltipStyle}
                       />
-                      <Bar name="Applications" dataKey="count" radius={4} maxBarSize={17}>
+                      <Bar
+                        name="Applications"
+                        dataKey="count"
+                        radius={[0, 4, 4, 0]}
+                        maxBarSize={17}
+                      >
                         {byStatus.map((s) => (
                           <Cell key={s.name} fill={s.color} />
                         ))}

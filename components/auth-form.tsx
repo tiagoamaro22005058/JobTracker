@@ -62,11 +62,10 @@ export function AuthForm({
           <Logo />
         </Link>
         <div className="auth-story-content">
-          <span className="eyebrow">JOBTRACK · PERSONAL WORKSPACE</span>
+          <span className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</span>
           <h1>
-            Your next move.
-            <br />
-            In focus.
+            A little more clarity.
+            <br />A lot more possibility.
           </h1>
           <p>
             Your applications, interviews, and next big move.
@@ -101,7 +100,7 @@ export function AuthForm({
       <section className="auth-panel">
         <div className="auth-box">
           <span className="eyebrow">WELCOME TO JOBTRACK</span>
-          <h2>{register ? 'Create your workspace' : 'Welcome back'}</h2>
+          <h2>{register ? 'Make room for what’s next.' : 'Welcome back.'}</h2>
           <p>
             {register
               ? 'Create your private job search workspace.'

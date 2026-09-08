@@ -89,7 +89,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               href={demo ? `/demo/${route}` : `/${route}`}
               onClick={() => setOpen(false)}
               className={`nav-item ${current === route ? 'active' : ''}`}
-              aria-current={current === route ? 'page' : undefined}
             >
               <Icon size={19} />
               {label}
@@ -145,9 +144,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             >
               <Menu size={20} />
             </button>
-            <BriefcaseBusiness size={18} aria-hidden="true" />
-            <span>JobTrack</span>
-            <span className="slash">—</span>
+            <span>Workspace</span>
+            <span className="slash">/</span>
             <strong>{navigation.find((n) => n[0] === current)?.[1] || 'Dashboard'}</strong>
           </div>
           <div className="topbar-right">
