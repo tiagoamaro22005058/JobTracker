@@ -83,7 +83,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
         <span className="nav-label">WORKSPACE</span>
         <nav>
-          {navigation.map(([route, label, Icon], index) => (
+          {navigation.map(([route, label, Icon]) => (
             <Link
               key={route}
               href={demo ? `/demo/${route}` : `/${route}`}
@@ -91,9 +91,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className={`nav-item ${current === route ? 'active' : ''}`}
               aria-current={current === route ? 'page' : undefined}
             >
-              <span className="nav-index" aria-hidden="true">
-                0{index + 1}
-              </span>
               <Icon size={19} />
               {label}
               {route === 'applications' && <span className="nav-count">{applications.length}</span>}

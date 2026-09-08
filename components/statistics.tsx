@@ -16,25 +16,25 @@ import { localDate, summarize } from '@/lib/applications';
 import { STATUSES } from '@/types/application';
 import { SummaryCards } from './summary-cards';
 const colors = [
-  '#64748b',
-  '#4c8df6',
-  '#daaa37',
-  '#9b78d6',
-  '#8160cb',
-  '#5967cb',
-  '#299baa',
-  '#c86aa7',
-  '#42a17b',
-  '#228762',
-  '#d87d78',
-  '#8c94a3',
-  '#a38e7b',
+  '#928471',
+  '#8b9a89',
+  '#baa06b',
+  '#a48b95',
+  '#937d8a',
+  '#817582',
+  '#81998f',
+  '#b89590',
+  '#909a6c',
+  '#75845d',
+  '#b27e68',
+  '#9c9387',
+  '#a18b72',
 ];
 const tooltipStyle = {
   border: '1px solid var(--border)',
   background: 'var(--surface)',
   color: 'var(--text)',
-  borderRadius: 0,
+  borderRadius: 9,
   fontSize: 14,
 };
 export function Statistics() {
@@ -189,7 +189,7 @@ export function Statistics() {
                       name="Applications"
                       dataKey="applications"
                       fill="var(--accent)"
-                      radius={0}
+                      radius={4}
                       maxBarSize={44}
                     />
                   </BarChart>
@@ -229,7 +229,7 @@ export function Statistics() {
                         cursor={{ fill: 'var(--surface-hover)' }}
                         contentStyle={tooltipStyle}
                       />
-                      <Bar name="Applications" dataKey="count" radius={0} maxBarSize={17}>
+                      <Bar name="Applications" dataKey="count" radius={4} maxBarSize={17}>
                         {byStatus.map((s) => (
                           <Cell key={s.name} fill={s.color} />
                         ))}
