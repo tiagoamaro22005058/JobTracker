@@ -64,9 +64,9 @@ export function AuthForm({
         <div className="auth-story-content">
           <span className="eyebrow">JOBTRACK · PERSONAL WORKSPACE</span>
           <h1>
-            Your job search.
+            Your next move.
             <br />
-            All systems go.
+            In focus.
           </h1>
           <p>
             Your applications, interviews, and next big move.
@@ -100,10 +100,6 @@ export function AuthForm({
       </section>
       <section className="auth-panel">
         <div className="auth-box">
-          <div className="auth-window-title">
-            <ShieldCheck size={16} aria-hidden="true" />
-            JobTrack — {register ? 'New account' : 'Sign in'}
-          </div>
           <span className="eyebrow">WELCOME TO JOBTRACK</span>
           <h2>{register ? 'Create your workspace' : 'Welcome back'}</h2>
           <p>

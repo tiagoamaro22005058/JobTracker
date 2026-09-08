@@ -83,7 +83,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
         <span className="nav-label">WORKSPACE</span>
         <nav>
-          {navigation.map(([route, label, Icon]) => (
+          {navigation.map(([route, label, Icon], index) => (
             <Link
               key={route}
               href={demo ? `/demo/${route}` : `/${route}`}
@@ -91,6 +91,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className={`nav-item ${current === route ? 'active' : ''}`}
               aria-current={current === route ? 'page' : undefined}
             >
+              <span className="nav-index" aria-hidden="true">
+                0{index + 1}
+              </span>
               <Icon size={19} />
               {label}
               {route === 'applications' && <span className="nav-count">{applications.length}</span>}
@@ -172,27 +175,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
-      <footer className="desktop-taskbar" aria-label="Workspace shortcuts">
-        <Link className="taskbar-start" href={demo ? '/demo' : '/dashboard'}>
-          <LayoutDashboard size={20} aria-hidden="true" />
-          JobTrack
-        </Link>
-        <nav aria-label="Open workspace pages">
-          {navigation.map(([route, label, Icon]) => (
-            <Link
-              key={route}
-              href={demo ? `/demo/${route}` : `/${route}`}
-              className={`taskbar-task ${current === route ? 'active' : ''}`}
-              aria-current={current === route ? 'page' : undefined}
-              aria-label={label}
-            >
-              <Icon size={16} aria-hidden="true" />
-              <span>{label}</span>
-            </Link>
-          ))}
-        </nav>
-        <span className="taskbar-status">{demo ? 'Local demo' : 'Personal workspace'}</span>
-      </footer>
       {toast && (
         <div className="toast" role="status">
           <Check size={17} />
