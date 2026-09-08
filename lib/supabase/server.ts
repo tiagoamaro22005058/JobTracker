@@ -1,0 +1,19 @@
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
+import { supabaseUrl, supabaseKey } from './config';
+import type { Database } from '@/types/application';
+export async function createClient() {
+  const cookieStore = await cookies();
+  return createServerClient<Database>(supabaseUrl!, supabaseKey!, {
+    cookies: {
+      getAll: () => cookieStore.getAll(),
+      setAll: (entries) => {
+        try {
+          entries.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
+        } catch {
+          /* Server component cookies are refreshed by proxy. */
+        }
+      },
+    },
+  });
+}
