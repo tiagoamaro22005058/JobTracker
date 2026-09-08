@@ -18,7 +18,7 @@ A private job application tracker built with Next.js, TypeScript, Tailwind CSS, 
 
 Next.js 16 App Router, React 19, TypeScript, Tailwind CSS 4, Supabase Auth/PostgreSQL, Zod validation, Recharts, Radix Dialog, Lucide icons, and next-themes. ESLint, Vitest, and Prettier support development.
 
-Use Node.js 22.13+ (Node 24 LTS recommended), npm, and a Supabase project. The lockfile pins the tested dependency versions. No paid services or service-role key are needed by the application.
+Use Node.js 24 LTS, npm, and a Supabase project. `.nvmrc`, `package.json`, and GitHub Actions use Node 24 consistently. The lockfile pins the tested dependency versions. No paid services or service-role key are needed by the application.
 
 ## Run locally
 
@@ -138,7 +138,9 @@ After configuring a real project, verify the full flow:
 4. As A, cancel a delete and confirm the row remains; confirm a delete and verify it disappears.
 5. Log out. Protected pages must redirect to login and API requests must return 401.
 
-## Deploy to Vercel later
+## Deploy to Vercel
+
+JobTrack needs a running Next.js server for API routes, cookie sessions, and authentication callbacks. GitHub Pages only serves static files and cannot host this version of the application. Do not enable `output: 'export'` or use the GitHub Pages Next.js deployment template. The GitHub Actions workflow runs lint, tests, and a production build; Vercel handles hosting separately through its Git integration.
 
 1. Push this repository to your Git provider and import it in Vercel.
 2. Use the Next.js preset, Node.js 24, build command `npm run build`, and default output settings.
@@ -146,6 +148,8 @@ After configuring a real project, verify the full flow:
 4. Apply the SQL migration to the target Supabase project if not already applied.
 5. Configure the production authentication URLs as described above.
 6. Deploy and perform the two-account checks. Environment changes require a new deployment because public variables are bundled at build time.
+
+Use the project's stable production domain in Supabase's Site URL and redirect allow list, not an individual deployment's generated preview URL. Keep the existing localhost callbacks for development. No GitHub Actions secrets are required for the CI workflow; the public Supabase values belong in Vercel's project environment variables. Keep the Vercel Output Directory setting at its Next.js default, not `out`.
 
 ## Project structure
 
