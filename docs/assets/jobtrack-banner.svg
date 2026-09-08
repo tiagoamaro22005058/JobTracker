@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="480" viewBox="0 0 1280 480" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">JobTrack — Your next chapter, organized.</title>
+  <desc id="desc">A branded illustration of the stages Applied, Interview, and Offer. Product illustration, not a screenshot.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="480" gradientUnits="userSpaceOnUse"><stop stop-color="#122C25"/><stop offset="1" stop-color="#0B1B17"/></linearGradient>
+    <linearGradient id="card" x1="765" y1="95" x2="1190" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#254D3F"/><stop offset="1" stop-color="#162F27"/></linearGradient>
+  </defs>
+  <rect width="1280" height="480" rx="24" fill="url(#bg)"/>
+  <circle cx="1178" cy="64" r="240" stroke="#284B3D"/>
+  <circle cx="1178" cy="64" r="185" stroke="#284B3D"/>
+  <circle cx="1178" cy="64" r="130" stroke="#284B3D"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="64" y="58" width="44" height="44" rx="13" fill="#A6E3C0"/>
+    <path d="M78 88v-8m8 8V75m8 13V69" stroke="#173D2E" stroke-width="3" stroke-linecap="round"/>
+    <text x="122" y="88" fill="#F3FAF5" font-size="28" font-weight="700">JobTrack.</text>
+    <text x="64" y="169" fill="#A6E3C0" font-size="13" font-weight="700" letter-spacing="3">YOUR PERSONAL JOB SEARCH WORKSPACE</text>
+    <text x="60" y="236" fill="#F3FAF5" font-size="57" font-weight="700" letter-spacing="-2">Your next chapter,</text>
+    <text x="60" y="302" fill="#A6E3C0" font-size="57" font-weight="700" letter-spacing="-2">organized.</text>
+    <text x="64" y="352" fill="#B4C7BD" font-size="19">Applications, interviews, and progress. All in one place.</text>
+    <rect x="64" y="390" width="174" height="34" rx="17" fill="#244A3A"/>
+    <text x="151" y="412" fill="#D5EBDD" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">TRACK WITH CLARITY</text>
+    <rect x="745" y="68" width="469" height="356" rx="22" fill="#081710" opacity=".35"/>
+    <rect x="733" y="56" width="469" height="356" rx="22" fill="url(#card)" stroke="#3E6251"/>
+    <text x="765" y="99" fill="#EEF8F1" font-size="18" font-weight="700">Every opportunity has a next step.</text>
+    <text x="765" y="124" fill="#AAC3B5" font-size="13">Keep yours in view.</text>
+    <path d="M792 177V348" stroke="#517664" stroke-width="2" stroke-dasharray="4 6"/>
+    <rect x="767" y="150" width="400" height="68" rx="12" fill="#284E3E"/>
+    <circle cx="793" cy="184" r="13" fill="#82B8ED"/>
+    <path d="m787 184 4 4 8-8" stroke="#18364B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="820" y="179" fill="#F0F7F2" font-size="16" font-weight="700">Applied</text>
+    <text x="820" y="200" fill="#B4CCBF" font-size="12">Your next opportunity starts here</text>
+    <rect x="767" y="232" width="400" height="68" rx="12" fill="#284E3E"/>
+    <circle cx="793" cy="266" r="13" fill="#D4B5F1"/>
+    <path d="M788 261h10v8h-6l-4 3v-11Z" stroke="#44305C" stroke-width="1.8" stroke-linejoin="round"/>
+    <text x="820" y="261" fill="#F0F7F2" font-size="16" font-weight="700">Interview</text>
+    <text x="820" y="282" fill="#B4CCBF" font-size="12">Keep every round and note together</text>
+    <rect x="767" y="314" width="400" height="68" rx="12" fill="#325C43" stroke="#6EAA80"/>
+    <circle cx="793" cy="348" r="13" fill="#B9E795"/>
+    <path d="m793 341 2 4 5 1-4 3 1 5-4-2-4 2 1-5-4-3 5-1 2-4Z" stroke="#36582C" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="820" y="343" fill="#F0F7F2" font-size="16" font-weight="700">Offer</text>
+    <text x="820" y="364" fill="#C3DBC8" font-size="12">Make room for your next chapter</text>
+  </g>
+</svg>
