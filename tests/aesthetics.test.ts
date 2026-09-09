@@ -1,21 +1,18 @@
 import { afterEach, expect, it, vi } from 'vitest';
 import { runInNewContext } from 'node:vm';
-import { aestheticBootstrap, AESTHETIC_KEY } from '@/lib/aesthetics';
+import { aestheticBootstrap, AESTHETIC_KEY, AESTHETICS } from '@/lib/aesthetics';
 import { setAesthetic } from '@/hooks/use-aesthetic';
 
 afterEach(() => vi.unstubAllGlobals());
 
-it.each(['original', 'retro', 'swiss', 'vintage'])(
-  'restores saved %s before hydration',
-  (saved) => {
-    const dataset: Record<string, string> = {};
-    runInNewContext(aestheticBootstrap, {
-      document: { documentElement: { dataset } },
-      localStorage: { getItem: () => saved },
-    });
-    expect(dataset.aesthetic).toBe(saved);
-  },
-);
+it.each(AESTHETICS.map((item) => item.id))('restores saved %s before hydration', (saved) => {
+  const dataset: Record<string, string> = {};
+  runInNewContext(aestheticBootstrap, {
+    document: { documentElement: { dataset } },
+    localStorage: { getItem: () => saved },
+  });
+  expect(dataset.aesthetic).toBe(saved);
+});
 
 it.each([null, 'removed-theme', '<script>'])(
   'falls back for unavailable or invalid saved values: %s',

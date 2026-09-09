@@ -11,6 +11,14 @@ export const AESTHETICS = [
     name: 'Warm Vintage',
     description: 'Soft beige, cocoa brown, and serif headings.',
   },
+  {
+    id: 'midnight',
+    name: 'Midnight',
+    description: 'Ink blue, precise lines, and a technical feel.',
+  },
+  { id: 'nord', name: 'Nord', description: 'Cool slate, muted blues, and spacious panels.' },
+  { id: 'paper', name: 'Paper', description: 'An ivory notebook with serif type and fine rules.' },
+  { id: 'lavender', name: 'Lavender', description: 'Soft lilac, plum accents, and rounded cards.' },
 ] as const;
 
 export type Aesthetic = (typeof AESTHETICS)[number]['id'];
