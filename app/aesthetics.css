@@ -1,0 +1,3407 @@
+/* Optional designs, scoped to the root preference. Original uses globals.css unchanged. */
+
+html[data-aesthetic='retro'] {
+  --background: #008080;
+  --surface: #c0c0c0;
+  --surface-hover: #d4d4d4;
+  --text: #171717;
+  --muted: #454545;
+  --border: #808080;
+  --accent: #000080;
+  --accent-strong: #000060;
+  --accent-soft: #e0e5f3;
+  --sidebar: #c0c0c0;
+  --field: #fff;
+  --highlight: #fff;
+  --edge: #404040;
+  --titlebar: linear-gradient(90deg, #000080, #1084d0);
+  --raised:
+    inset 1px 1px var(--highlight), inset -1px -1px var(--edge), inset 2px 2px #dfdfdf,
+    inset -2px -2px var(--border);
+  --sunken:
+    inset 1px 1px var(--edge), inset -1px -1px var(--highlight), inset 2px 2px var(--border);
+  --shadow: 3px 3px 0 #0005;
+  --font-sans: Tahoma, 'MS Sans Serif', Verdana, sans-serif;
+}
+html[data-aesthetic='retro'].dark {
+  --background: #003c40;
+  --surface: #34383e;
+  --surface-hover: #454b53;
+  --text: #f4f4f4;
+  --muted: #c4c9d0;
+  --border: #666e78;
+  --accent: #b5ccff;
+  --accent-strong: #d2dfff;
+  --accent-soft: #283c60;
+  --sidebar: #34383e;
+  --field: #1b2027;
+  --highlight: #89939e;
+  --edge: #101318;
+  --titlebar: linear-gradient(90deg, #000058, #235f90);
+  --raised:
+    inset 1px 1px var(--highlight), inset -1px -1px var(--edge), inset 2px 2px #555e68,
+    inset -2px -2px #252930;
+  color-scheme: dark;
+}
+/* Retro desktop theme: shared controls, window chrome, and responsive taskbar. */
+:where(html[data-aesthetic='retro']) body {
+  background: var(--background);
+}
+:where(html[data-aesthetic='retro']) h1,
+:where(html[data-aesthetic='retro']) h2,
+:where(html[data-aesthetic='retro']) h3 {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+:where(html[data-aesthetic='retro']) button,
+:where(html[data-aesthetic='retro']) a {
+  transition: none;
+}
+:where(html[data-aesthetic='retro']) button:focus-visible,
+:where(html[data-aesthetic='retro']) a:focus-visible,
+:where(html[data-aesthetic='retro']) input:focus-visible,
+:where(html[data-aesthetic='retro']) select:focus-visible,
+:where(html[data-aesthetic='retro']) textarea:focus-visible {
+  outline: 2px dotted var(--text);
+  outline-offset: 3px;
+}
+:where(html[data-aesthetic='retro']) input,
+:where(html[data-aesthetic='retro']) select,
+:where(html[data-aesthetic='retro']) textarea {
+  background: var(--field);
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--sunken);
+  padding: 11px;
+}
+:where(html[data-aesthetic='retro']) .button,
+:where(html[data-aesthetic='retro']) .icon-button,
+:where(html[data-aesthetic='retro']) .appearance-option,
+:where(html[data-aesthetic='retro']) .taskbar-start,
+:where(html[data-aesthetic='retro']) .taskbar-task {
+  border-radius: 0;
+  border: 0;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--raised);
+}
+:where(html[data-aesthetic='retro']) .button {
+  min-height: 42px;
+  font-size: 14px;
+  padding: 10px 17px;
+}
+:where(html[data-aesthetic='retro']) .button.primary,
+html[data-aesthetic='retro'].dark .button.primary {
+  background: var(--surface);
+  color: var(--text);
+  outline: 1px solid var(--text);
+  outline-offset: 1px;
+  font-weight: 700;
+}
+:where(html[data-aesthetic='retro']) .button:hover,
+:where(html[data-aesthetic='retro']) .icon-button:hover,
+:where(html[data-aesthetic='retro']) .taskbar-start:hover,
+:where(html[data-aesthetic='retro']) .taskbar-task:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+:where(html[data-aesthetic='retro']) .button:active:not(:disabled),
+:where(html[data-aesthetic='retro']) .icon-button:active:not(:disabled),
+:where(html[data-aesthetic='retro']) .taskbar-start:active,
+:where(html[data-aesthetic='retro']) .taskbar-task.active,
+:where(html[data-aesthetic='retro']) .secondary.selected {
+  box-shadow: var(--sunken);
+}
+:where(html[data-aesthetic='retro']) .button:focus-visible {
+  outline: 2px dotted var(--text);
+  outline-offset: -6px;
+}
+:where(html[data-aesthetic='retro']) .button.danger {
+  color: #a00000;
+  font-weight: 700;
+}
+html[data-aesthetic='retro'].dark .button.danger {
+  color: #ffb8b8;
+}
+:where(html[data-aesthetic='retro']) .icon-button {
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='retro']) .text-link,
+:where(html[data-aesthetic='retro']) .job-link,
+:where(html[data-aesthetic='retro']) .auth-switch a,
+:where(html[data-aesthetic='retro']) .demo-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+:where(html[data-aesthetic='retro']) .eyebrow {
+  font:
+    12px/1.5 'Courier New',
+    monospace;
+  letter-spacing: 1px;
+}
+:where(html[data-aesthetic='retro']) .app-layout {
+  padding: 18px 18px 74px;
+}
+:where(html[data-aesthetic='retro']) .sidebar {
+  top: 18px;
+  left: 18px;
+  bottom: 72px;
+  width: 226px;
+  padding: 4px;
+  border: 0;
+  box-shadow: var(--raised), var(--shadow);
+  overflow-y: auto;
+}
+:where(html[data-aesthetic='retro']) .sidebar-logo {
+  background: var(--titlebar);
+  color: #fff;
+  padding: 8px 9px;
+  margin-bottom: 16px;
+}
+:where(html[data-aesthetic='retro']) .brand {
+  font-size: 21px;
+  letter-spacing: -0.5px;
+}
+:where(html[data-aesthetic='retro']) .brand-icon {
+  border-radius: 0;
+  transform: none;
+  background: var(--surface);
+  box-shadow: var(--raised);
+  color: var(--accent);
+  width: 28px;
+  height: 28px;
+}
+:where(html[data-aesthetic='retro']) .brand-icon > svg {
+  transform: none;
+}
+:where(html[data-aesthetic='retro']) .brand-dot {
+  color: inherit;
+}
+:where(html[data-aesthetic='retro']) .workspace-label {
+  margin: 0 8px 20px;
+  padding: 9px 6px;
+  border-radius: 0;
+  border: 0;
+  box-shadow: var(--sunken);
+}
+:where(html[data-aesthetic='retro']) .workspace-label > div {
+  white-space: normal;
+}
+:where(html[data-aesthetic='retro']) .workspace-label > div > span {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .workspace-avatar,
+:where(html[data-aesthetic='retro']) .workspace-plan,
+:where(html[data-aesthetic='retro']) .nav-count,
+:where(html[data-aesthetic='retro']) .avatar,
+:where(html[data-aesthetic='retro']) .company-avatar,
+:where(html[data-aesthetic='retro']) .filter-count,
+:where(html[data-aesthetic='retro']) .empty-icon,
+:where(html[data-aesthetic='retro']) .step-icon {
+  border-radius: 0;
+}
+:where(html[data-aesthetic='retro']) .workspace-plan {
+  display: none;
+}
+:where(html[data-aesthetic='retro']) .nav-label {
+  font-size: 12px;
+  letter-spacing: 0;
+  padding-left: 12px;
+}
+:where(html[data-aesthetic='retro']) .sidebar nav {
+  padding: 0 7px;
+}
+:where(html[data-aesthetic='retro']) .nav-item {
+  border-radius: 0;
+  font-size: 14px;
+  color: var(--text);
+  padding: 10px;
+  gap: 9px;
+}
+:where(html[data-aesthetic='retro']) .nav-item > svg {
+  color: var(--accent);
+}
+:where(html[data-aesthetic='retro']) .nav-item.active {
+  background: #000080;
+  color: #fff;
+  outline: 1px dotted #fff;
+  outline-offset: -4px;
+}
+:where(html[data-aesthetic='retro']) .nav-item.active > svg {
+  color: #ffff80;
+}
+:where(html[data-aesthetic='retro']) .nav-count,
+:where(html[data-aesthetic='retro']) .active .nav-count {
+  background: var(--field);
+  color: var(--text);
+  box-shadow: var(--sunken);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .sidebar-bottom {
+  padding-top: 18px;
+}
+:where(html[data-aesthetic='retro']) .sidebar-note {
+  border-radius: 0;
+  border: 0;
+  box-shadow: var(--sunken);
+  background: var(--field);
+  margin: 0 8px 16px;
+  padding: 12px;
+}
+:where(html[data-aesthetic='retro']) .sidebar-note strong,
+:where(html[data-aesthetic='retro']) .sidebar-note p,
+:where(html[data-aesthetic='retro']) .sidebar-note a {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .small-spark {
+  display: none;
+}
+:where(html[data-aesthetic='retro']) .theme-toggle {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .theme-switch,
+:where(html[data-aesthetic='retro']) .theme-switch:before {
+  border-radius: 0;
+}
+:where(html[data-aesthetic='retro']) .user-card {
+  padding: 12px 8px;
+  border-top: 1px solid var(--border);
+}
+:where(html[data-aesthetic='retro']) .avatar {
+  background: var(--field);
+  color: var(--accent);
+  box-shadow: var(--sunken);
+}
+:where(html[data-aesthetic='retro']) .user-card small {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .main-shell {
+  margin-left: 244px;
+  background: var(--surface);
+  padding: 4px;
+  box-shadow: var(--raised), var(--shadow);
+  min-height: calc(100dvh - 92px);
+}
+:where(html[data-aesthetic='retro']) .topbar {
+  height: auto;
+  min-height: 38px;
+  padding: 7px 10px;
+  border: 0;
+  background: var(--titlebar);
+  color: #fff;
+  gap: 12px;
+}
+:where(html[data-aesthetic='retro']) .breadcrumb {
+  gap: 8px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+:where(html[data-aesthetic='retro']) .breadcrumb strong,
+:where(html[data-aesthetic='retro']) .breadcrumb > span:first-of-type,
+:where(html[data-aesthetic='retro']) .slash,
+:where(html[data-aesthetic='retro']) .private-indicator {
+  color: #fff;
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .breadcrumb strong {
+  font-weight: 700;
+}
+:where(html[data-aesthetic='retro']) .private-indicator {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .private-indicator > span,
+:where(html[data-aesthetic='retro']) .live-dot {
+  border-radius: 0;
+  background: #00c000;
+}
+:where(html[data-aesthetic='retro']) .topbar-right {
+  gap: 10px;
+}
+:where(html[data-aesthetic='retro']) .avatar-small {
+  width: 25px;
+  height: 25px;
+}
+:where(html[data-aesthetic='retro']) .demo-banner {
+  background: #ffffcc;
+  color: #353514;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .demo-banner a {
+  color: #000080;
+  text-decoration: underline;
+}
+:where(html[data-aesthetic='retro']) .main-content {
+  padding: 25px 20px 16px;
+}
+:where(html[data-aesthetic='retro']) .page-heading {
+  gap: 18px;
+  margin-bottom: 24px;
+}
+:where(html[data-aesthetic='retro']) .page-heading h1 {
+  font-size: clamp(23px, 2.3vw, 32px);
+  letter-spacing: -0.6px;
+}
+:where(html[data-aesthetic='retro']) .page-heading p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .page-heading > .button {
+  margin-top: 0;
+}
+:where(html[data-aesthetic='retro']) .heading-dot {
+  display: none;
+}
+:where(html[data-aesthetic='retro']) .summary-grid {
+  gap: 12px;
+}
+:where(html[data-aesthetic='retro']) .summary-card,
+:where(html[data-aesthetic='retro']) .summary-featured,
+html[data-aesthetic='retro'].dark .summary-featured,
+:where(html[data-aesthetic='retro']) .rate-card {
+  border: 0;
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: var(--raised);
+  padding: 14px;
+}
+:where(html[data-aesthetic='retro']) .summary-top > span {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .summary-featured .summary-top > span {
+  color: var(--text);
+}
+:where(html[data-aesthetic='retro']) .summary-card > strong,
+:where(html[data-aesthetic='retro']) .rate-card > strong {
+  background: var(--field);
+  padding: 5px 9px;
+  box-shadow: var(--sunken);
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+:where(html[data-aesthetic='retro']) .summary-card > small {
+  font-size: 12px;
+  margin-top: 9px;
+}
+:where(html[data-aesthetic='retro']) .metric-icon {
+  opacity: 1;
+}
+:where(html[data-aesthetic='retro']) .metric-teal,
+:where(html[data-aesthetic='retro']) .metric-green {
+  color: #008040;
+}
+:where(html[data-aesthetic='retro']) .metric-amber {
+  color: #805800;
+}
+:where(html[data-aesthetic='retro']) .metric-purple {
+  color: #800080;
+}
+:where(html[data-aesthetic='retro']) .metric-red {
+  color: #a00000;
+}
+html[data-aesthetic='retro'].dark .metric-icon {
+  color: #b5ccff;
+}
+:where(html[data-aesthetic='retro']) .applications-panel,
+:where(html[data-aesthetic='retro']) .chart-card,
+:where(html[data-aesthetic='retro']) .settings-card,
+:where(html[data-aesthetic='retro']) .momentum-card,
+:where(html[data-aesthetic='retro']) .next-card,
+:where(html[data-aesthetic='retro']) .privacy-card,
+:where(html[data-aesthetic='retro']) .modal-content,
+:where(html[data-aesthetic='retro']) .auth-box,
+:where(html[data-aesthetic='retro']) .auth-preview,
+:where(html[data-aesthetic='retro']) .setup-card {
+  border: 0;
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: var(--raised), var(--shadow);
+}
+:where(html[data-aesthetic='retro']) .applications-panel {
+  padding: 4px;
+}
+:where(html[data-aesthetic='retro']) .panel-title {
+  background: var(--titlebar);
+  color: #fff;
+  padding: 8px 10px;
+}
+:where(html[data-aesthetic='retro']) .panel-title h2 {
+  font-size: 16px;
+}
+:where(html[data-aesthetic='retro']) .panel-title h2 > span {
+  border: 0;
+  border-radius: 0;
+  background: #c0c0c0;
+  color: #171717;
+  font-size: 12px;
+  box-shadow:
+    inset 1px 1px #808080,
+    inset -1px -1px #fff;
+}
+:where(html[data-aesthetic='retro']) .panel-title p {
+  display: none;
+}
+:where(html[data-aesthetic='retro']) .panel-note {
+  color: #fff;
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .application-tabs {
+  gap: 3px;
+  padding: 14px 8px 0;
+  border-bottom: 1px solid var(--highlight);
+}
+:where(html[data-aesthetic='retro']) .application-tabs > button {
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--raised);
+  background: var(--surface);
+  color: var(--text);
+}
+:where(html[data-aesthetic='retro']) .application-tabs > button.active {
+  color: var(--text);
+  font-weight: 700;
+  background: var(--surface-hover);
+  box-shadow: var(--sunken);
+}
+:where(html[data-aesthetic='retro']) .application-tabs > button > span,
+:where(html[data-aesthetic='retro']) .application-tabs > button.active > span {
+  border-radius: 0;
+  font-size: 12px;
+  background: var(--field);
+  color: var(--text);
+}
+:where(html[data-aesthetic='retro']) .table-toolbar {
+  padding: 14px 9px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+:where(html[data-aesthetic='retro']) .search-input {
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--sunken);
+  background: var(--field);
+  flex: 1;
+  min-width: 210px;
+}
+:where(html[data-aesthetic='retro']) .search-input input {
+  box-shadow: none;
+  font-size: 14px;
+  background: transparent;
+}
+:where(html[data-aesthetic='retro']) .toolbar-buttons {
+  flex-wrap: wrap;
+}
+:where(html[data-aesthetic='retro']) .toolbar-buttons .button,
+:where(html[data-aesthetic='retro']) .sort-control select {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .sort-control {
+  background: var(--field);
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--sunken);
+}
+:where(html[data-aesthetic='retro']) .sort-control select {
+  background: transparent;
+  box-shadow: none;
+}
+:where(html[data-aesthetic='retro']) .advanced-filters {
+  padding: 0 10px 16px;
+}
+:where(html[data-aesthetic='retro']) .advanced-filters label,
+:where(html[data-aesthetic='retro']) .advanced-filters input,
+:where(html[data-aesthetic='retro']) .advanced-filters select {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .active-filters {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .table-scroll {
+  background: var(--field);
+  box-shadow: var(--sunken);
+  padding: 2px;
+  scrollbar-width: auto;
+}
+:where(html[data-aesthetic='retro']) .applications-table thead {
+  background: var(--surface);
+}
+:where(html[data-aesthetic='retro']) .applications-table th {
+  color: var(--text);
+  font-size: 14px;
+  box-shadow: var(--raised);
+  border: 0;
+  padding: 10px;
+}
+:where(html[data-aesthetic='retro']) .applications-table td {
+  font-size: 14px;
+  height: 58px;
+  padding: 10px;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 35%, var(--field));
+}
+:where(html[data-aesthetic='retro']) .applications-table th:first-child,
+:where(html[data-aesthetic='retro']) .applications-table td:first-child {
+  padding-left: 12px;
+}
+:where(html[data-aesthetic='retro']) .applications-table tbody tr:hover {
+  background: var(--accent-soft);
+}
+:where(html[data-aesthetic='retro']) .company-button {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .company-avatar {
+  border: 1px solid var(--border);
+  width: 27px;
+  height: 27px;
+}
+:where(html[data-aesthetic='retro']) .job-link {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .status-badge {
+  font-size: 14px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  padding: 4px 7px;
+}
+:where(html[data-aesthetic='retro']) .status-dot {
+  border-radius: 0;
+  width: 5px;
+  height: 5px;
+}
+:where(html[data-aesthetic='retro']) .tone-slate {
+  --badge-text: #364354;
+}
+:where(html[data-aesthetic='retro']) .tone-blue {
+  --badge-text: #123e8e;
+}
+:where(html[data-aesthetic='retro']) .tone-amber {
+  --badge-text: #705000;
+}
+:where(html[data-aesthetic='retro']) .tone-purple,
+:where(html[data-aesthetic='retro']) .tone-violet {
+  --badge-text: #63317f;
+}
+:where(html[data-aesthetic='retro']) .tone-indigo {
+  --badge-text: #343e8a;
+}
+:where(html[data-aesthetic='retro']) .tone-cyan {
+  --badge-text: #00646a;
+}
+:where(html[data-aesthetic='retro']) .tone-pink {
+  --badge-text: #8d2358;
+}
+:where(html[data-aesthetic='retro']) .tone-green,
+:where(html[data-aesthetic='retro']) .tone-emerald {
+  --badge-text: #145d36;
+}
+:where(html[data-aesthetic='retro']) .tone-red {
+  --badge-text: #9d2525;
+}
+:where(html[data-aesthetic='retro']) .tone-gray {
+  --badge-text: #48505c;
+}
+:where(html[data-aesthetic='retro']) .tone-stone {
+  --badge-text: #645040;
+}
+:where(html[data-aesthetic='retro']) .table-actions {
+  gap: 5px;
+}
+:where(html[data-aesthetic='retro']) .table-actions .icon-button {
+  opacity: 1;
+  min-width: 30px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='retro']) .table-footer {
+  margin-top: 4px;
+  padding: 8px;
+  box-shadow: var(--sunken);
+  border: 0;
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .pagination > .icon-button {
+  border: 0;
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='retro']) .momentum-card,
+:where(html[data-aesthetic='retro']) .next-card {
+  padding: 18px;
+}
+:where(html[data-aesthetic='retro']) .section-kicker {
+  font-size: 12px;
+  letter-spacing: 0;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--border);
+}
+:where(html[data-aesthetic='retro']) .momentum-card p,
+:where(html[data-aesthetic='retro']) .next-card p,
+:where(html[data-aesthetic='retro']) .momentum-card .text-link,
+:where(html[data-aesthetic='retro']) .next-card .text-link {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .mini-bars > span {
+  border-radius: 0;
+  background: #008080;
+  border: 1px solid var(--edge);
+}
+:where(html[data-aesthetic='retro']) .mini-bars > span:nth-last-child(2),
+:where(html[data-aesthetic='retro']) .mini-bars > span:last-child {
+  background: var(--accent);
+}
+:where(html[data-aesthetic='retro']) .page-footer {
+  padding: 8px;
+  box-shadow: var(--sunken);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .date-chip {
+  border-radius: 0;
+  border: 0;
+  box-shadow: var(--sunken);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .chart-card,
+:where(html[data-aesthetic='retro']) .settings-card {
+  padding: 4px 16px 18px;
+}
+:where(html[data-aesthetic='retro']) .chart-heading,
+:where(html[data-aesthetic='retro']) .settings-heading {
+  margin: 0 -12px 18px;
+  padding: 9px 10px;
+  background: var(--titlebar);
+  color: #fff;
+}
+:where(html[data-aesthetic='retro']) .chart-heading h2,
+:where(html[data-aesthetic='retro']) .settings-heading h2 {
+  font-size: 16px;
+}
+:where(html[data-aesthetic='retro']) .chart-heading p,
+:where(html[data-aesthetic='retro']) .settings-heading p,
+:where(html[data-aesthetic='retro']) .settings-heading > svg {
+  color: #fff;
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .chart-canvas {
+  background: var(--field);
+  box-shadow: var(--sunken);
+  padding: 10px 5px;
+}
+:where(html[data-aesthetic='retro']) .rate-card > span,
+:where(html[data-aesthetic='retro']) .profile-form small,
+:where(html[data-aesthetic='retro']) .demo-profile p,
+:where(html[data-aesthetic='retro']) .privacy-card p,
+:where(html[data-aesthetic='retro']) .statistics-note {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .rate-card > p {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .privacy-card {
+  color: var(--text);
+}
+:where(html[data-aesthetic='retro']) .appearance-option {
+  background: var(--surface);
+}
+:where(html[data-aesthetic='retro']) .appearance-option > strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .theme-preview {
+  background: #008080;
+  border-radius: 0;
+  border: 0;
+  box-shadow:
+    inset 1px 1px #404040,
+    inset -1px -1px #fff;
+}
+:where(html[data-aesthetic='retro']) .theme-preview:before {
+  background: #c0c0c0;
+}
+:where(html[data-aesthetic='retro']) .theme-preview i {
+  background: #c0c0c0;
+  border-radius: 0;
+}
+:where(html[data-aesthetic='retro']) .theme-preview i:first-child {
+  background: #000080;
+}
+:where(html[data-aesthetic='retro']) .theme-dark {
+  background: #003c40;
+}
+:where(html[data-aesthetic='retro']) .theme-dark:before,
+:where(html[data-aesthetic='retro']) .theme-dark i {
+  background: #34383e;
+}
+:where(html[data-aesthetic='retro']) .theme-system {
+  background: linear-gradient(90deg, #008080 50%, #003c40 50%);
+}
+:where(html[data-aesthetic='retro']) .profile-form input[readonly],
+:where(html[data-aesthetic='retro']) .notes {
+  background: var(--field);
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--sunken);
+}
+:where(html[data-aesthetic='retro']) .modal-overlay {
+  background: #0005;
+  backdrop-filter: none;
+  animation: none;
+}
+:where(html[data-aesthetic='retro']) .modal-content {
+  padding: 4px;
+}
+:where(html[data-aesthetic='retro']) .modal-heading {
+  padding: 8px 10px;
+  background: var(--titlebar);
+  color: #fff;
+  border: 0;
+}
+:where(html[data-aesthetic='retro']) .modal-heading h2 {
+  font-size: 17px;
+}
+:where(html[data-aesthetic='retro']) .modal-heading p {
+  color: #fff;
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .modal-heading .icon-button {
+  color: var(--text);
+}
+:where(html[data-aesthetic='retro']) .modal-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+:where(html[data-aesthetic='retro']) .modal-footer > span {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .error-message,
+:where(html[data-aesthetic='retro']) .success-message {
+  border-radius: 0;
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .toast {
+  bottom: 68px;
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 0;
+  box-shadow: var(--raised), var(--shadow);
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .loading-bar {
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 16px, transparent 16px 19px);
+  opacity: 0.4;
+}
+:where(html[data-aesthetic='retro']) .desktop-taskbar {
+  position: fixed;
+  z-index: 40;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px max(6px, env(safe-area-inset-bottom));
+  background: var(--surface);
+  box-shadow:
+    inset 0 1px var(--highlight),
+    inset 0 2px #dfdfdf;
+}
+:where(html[data-aesthetic='retro']) .taskbar-start,
+:where(html[data-aesthetic='retro']) .taskbar-task {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  min-height: 40px;
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .taskbar-start {
+  font-weight: 700;
+}
+:where(html[data-aesthetic='retro']) .taskbar-start svg {
+  color: var(--accent);
+}
+:where(html[data-aesthetic='retro']) .desktop-taskbar nav {
+  display: flex;
+  gap: 5px;
+  min-width: 0;
+}
+:where(html[data-aesthetic='retro']) .taskbar-task {
+  min-width: 125px;
+}
+:where(html[data-aesthetic='retro']) .taskbar-task.active {
+  font-weight: 700;
+  background: var(--surface-hover);
+}
+:where(html[data-aesthetic='retro']) .taskbar-status {
+  margin-left: auto;
+  box-shadow: var(--sunken);
+  padding: 10px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+:where(html[data-aesthetic='retro']) .auth-layout {
+  background: var(--background);
+  padding: 32px;
+  gap: 42px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+:where(html[data-aesthetic='retro']) .auth-story {
+  background: none;
+  color: #fff;
+  min-height: calc(100dvh - 64px);
+  padding: 20px;
+}
+:where(html[data-aesthetic='retro']) .auth-story h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-shadow: 2px 2px #003c40;
+}
+:where(html[data-aesthetic='retro']) .auth-story .eyebrow,
+:where(html[data-aesthetic='retro']) .auth-story-content > p,
+:where(html[data-aesthetic='retro']) .auth-footer {
+  color: #fff;
+}
+:where(html[data-aesthetic='retro']) .auth-story-content {
+  padding: 40px 0;
+}
+:where(html[data-aesthetic='retro']) .auth-preview {
+  transform: none;
+  color: var(--text);
+  padding: 4px 16px;
+}
+:where(html[data-aesthetic='retro']) .auth-preview-header {
+  background: var(--titlebar);
+  color: #fff;
+  margin: 0 -12px;
+  padding: 9px;
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .auth-preview-header > span:last-child {
+  color: #fff;
+}
+:where(html[data-aesthetic='retro']) .auth-preview-row strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .auth-preview-row small,
+:where(html[data-aesthetic='retro']) .auth-footer {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .preview-dot,
+:where(html[data-aesthetic='retro']) .preview-line {
+  border-radius: 0;
+}
+:where(html[data-aesthetic='retro']) .auth-panel {
+  padding: 20px 0;
+}
+:where(html[data-aesthetic='retro']) .auth-box {
+  max-width: 460px;
+  padding: 4px 28px 24px;
+}
+:where(html[data-aesthetic='retro']) .auth-window-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--titlebar);
+  color: #fff;
+  margin: 0 -24px 28px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+:where(html[data-aesthetic='retro']) .auth-box h2 {
+  font-size: 26px;
+  letter-spacing: -0.5px;
+}
+:where(html[data-aesthetic='retro']) .auth-form input {
+  font-size: 16px;
+}
+:where(html[data-aesthetic='retro']) .auth-box > .auth-switch,
+:where(html[data-aesthetic='retro']) .demo-link,
+:where(html[data-aesthetic='retro']) .auth-privacy {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='retro']) .auth-privacy {
+  justify-content: flex-start;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+  margin-top: 22px;
+  font-size: 12px;
+}
+:where(html[data-aesthetic='retro']) .setup-card {
+  background: var(--surface);
+}
+@media (max-width: 1400px) {
+  :where(html[data-aesthetic='retro']) .summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1050px) {
+  :where(html[data-aesthetic='retro']) .taskbar-status {
+    display: none;
+  }
+  :where(html[data-aesthetic='retro']) .page-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  :where(html[data-aesthetic='retro']) .charts-grid,
+  :where(html[data-aesthetic='retro']) .dashboard-bottom {
+    grid-template-columns: 1fr;
+  }
+  :where(html[data-aesthetic='retro']) .auth-layout {
+    gap: 24px;
+    padding: 20px;
+  }
+  :where(html[data-aesthetic='retro']) .auth-story {
+    padding: 12px;
+  }
+}
+@media (max-width: 900px) {
+  :where(html[data-aesthetic='retro']) .app-layout {
+    padding: 10px 10px 80px;
+  }
+  :where(html[data-aesthetic='retro']) .main-shell {
+    margin-left: 0;
+    min-height: calc(100dvh - 90px);
+  }
+  :where(html[data-aesthetic='retro']) .sidebar {
+    top: 10px;
+    left: 10px;
+    bottom: 72px;
+    width: 240px;
+    transform: translateX(-270px);
+  }
+  :where(html[data-aesthetic='retro']) .sidebar.is-open {
+    transform: translateX(0);
+  }
+  :where(html[data-aesthetic='retro']) .sidebar .mobile-only,
+  :where(html[data-aesthetic='retro']) .topbar .mobile-only {
+    display: inline-flex !important;
+  }
+  :where(html[data-aesthetic='retro']) .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: #0006;
+    z-index: 29;
+  }
+  :where(html[data-aesthetic='retro']) .toast {
+    left: 50%;
+  }
+  :where(html[data-aesthetic='retro']) .main-content {
+    padding: 22px 14px 14px;
+  }
+}
+@media (max-width: 680px) {
+  :where(html[data-aesthetic='retro']) .topbar {
+    padding: 6px;
+  }
+  :where(html[data-aesthetic='retro']) .breadcrumb {
+    gap: 6px;
+  }
+  :where(html[data-aesthetic='retro']) .breadcrumb > span:first-of-type,
+  :where(html[data-aesthetic='retro']) .breadcrumb .slash {
+    display: none;
+  }
+  :where(html[data-aesthetic='retro']) .topbar-right .private-indicator {
+    display: none;
+  }
+  :where(html[data-aesthetic='retro']) .main-content {
+    padding: 20px 8px 10px;
+  }
+  :where(html[data-aesthetic='retro']) .page-heading h1 {
+    font-size: 24px;
+  }
+  :where(html[data-aesthetic='retro']) .page-heading p {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='retro']) .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :where(html[data-aesthetic='retro']) .summary-card {
+    padding: 12px;
+  }
+  :where(html[data-aesthetic='retro']) .summary-top > span {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='retro']) .summary-card > small {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='retro']) .panel-title {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  :where(html[data-aesthetic='retro']) .panel-note {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='retro']) .application-tabs {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  :where(html[data-aesthetic='retro']) .application-tabs > button {
+    font-size: 14px;
+    padding: 10px;
+  }
+  :where(html[data-aesthetic='retro']) .table-toolbar {
+    padding: 12px 4px;
+  }
+  :where(html[data-aesthetic='retro']) .search-input {
+    min-width: 100%;
+  }
+  :where(html[data-aesthetic='retro']) .toolbar-buttons {
+    gap: 8px;
+    width: 100%;
+  }
+  :where(html[data-aesthetic='retro']) .sort-control {
+    flex: 1;
+    min-width: 0;
+  }
+  :where(html[data-aesthetic='retro']) .sort-control select {
+    width: 100%;
+    max-width: none;
+  }
+  :where(html[data-aesthetic='retro']) .table-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='retro']) .applications-table td,
+  :where(html[data-aesthetic='retro']) .applications-table th,
+  :where(html[data-aesthetic='retro']) .company-button {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='retro']) .advanced-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  :where(html[data-aesthetic='retro']) .rates-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :where(html[data-aesthetic='retro']) .rate-card > p {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='retro']) .chart-heading h2,
+  :where(html[data-aesthetic='retro']) .settings-heading h2 {
+    font-size: 16px;
+  }
+  :where(html[data-aesthetic='retro']) .chart-heading p,
+  :where(html[data-aesthetic='retro']) .settings-heading p {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='retro']) .page-footer {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='retro']) .desktop-taskbar {
+    gap: 6px;
+  }
+  :where(html[data-aesthetic='retro']) .desktop-taskbar nav {
+    flex: 1;
+  }
+  :where(html[data-aesthetic='retro']) .taskbar-start {
+    font-size: 14px;
+    padding: 8px;
+  }
+  :where(html[data-aesthetic='retro']) .taskbar-task {
+    min-width: 0;
+    flex: 1;
+    justify-content: center;
+    padding: 9px;
+  }
+  :where(html[data-aesthetic='retro']) .taskbar-task span {
+    display: none;
+  }
+  :where(html[data-aesthetic='retro']) .auth-layout {
+    display: block;
+    padding: 16px;
+  }
+  :where(html[data-aesthetic='retro']) .auth-story {
+    display: block;
+    min-height: 0;
+    background: none;
+    padding: 12px 4px 24px;
+    border: 0;
+  }
+  :where(html[data-aesthetic='retro']) .auth-story-content,
+  :where(html[data-aesthetic='retro']) .auth-footer {
+    display: none;
+  }
+  :where(html[data-aesthetic='retro']) .auth-panel {
+    min-height: 0;
+    padding: 0 0 30px;
+  }
+  :where(html[data-aesthetic='retro']) .auth-box {
+    padding: 4px 22px 24px;
+  }
+  :where(html[data-aesthetic='retro']) .auth-window-title {
+    margin-left: -18px;
+    margin-right: -18px;
+  }
+  :where(html[data-aesthetic='retro']) .modal-footer .button {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='retro']) .modal-heading {
+    padding: 8px;
+  }
+}
+@media (max-height: 760px) and (min-width: 901px) {
+  :where(html[data-aesthetic='retro']) .sidebar-note {
+    display: none;
+  }
+}
+
+:where(html[data-aesthetic='retro']) .standalone-state {
+  min-height: 0;
+  width: calc(100% - 32px);
+  max-width: 620px;
+  margin: 12vh auto;
+  background: var(--surface);
+  box-shadow: var(--raised), var(--shadow);
+  padding: 30px;
+}
+:where(html[data-aesthetic='retro']) .standalone-state h1 {
+  font-size: 25px;
+}
+
+html[data-aesthetic='swiss'] {
+  --background: #f4f4ef;
+  --surface: #fff;
+  --surface-hover: #ebebe5;
+  --text: #111;
+  --muted: #53534e;
+  --border: #171717;
+  --accent: #b92e13;
+  --accent-strong: #94210b;
+  --accent-soft: #fbe6df;
+  --sidebar: #f4f4ef;
+  --signal: #ff4b23;
+  --shadow: none;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+html[data-aesthetic='swiss'].dark {
+  --background: #171717;
+  --surface: #202020;
+  --surface-hover: #303030;
+  --text: #f4f4ef;
+  --muted: #b7b7b0;
+  --border: #d7d7cf;
+  --accent: #ff8063;
+  --accent-strong: #ffa18c;
+  --accent-soft: #43251e;
+  --sidebar: #171717;
+  --signal: #ff704d;
+  --shadow: none;
+  color-scheme: dark;
+}
+/* Swiss editorial system: strict rules, flat surfaces, and typographic hierarchy. */
+:where(html[data-aesthetic='swiss']) body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+}
+:where(html[data-aesthetic='swiss']) ::selection {
+  background: var(--signal);
+  color: #111;
+}
+:where(html[data-aesthetic='swiss']) h1,
+:where(html[data-aesthetic='swiss']) h2,
+:where(html[data-aesthetic='swiss']) h3 {
+  font-weight: 750;
+}
+:where(html[data-aesthetic='swiss']) button,
+:where(html[data-aesthetic='swiss']) a {
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+:where(html[data-aesthetic='swiss']) button:focus-visible,
+:where(html[data-aesthetic='swiss']) a:focus-visible,
+:where(html[data-aesthetic='swiss']) input:focus-visible,
+:where(html[data-aesthetic='swiss']) select:focus-visible,
+:where(html[data-aesthetic='swiss']) textarea:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+:where(html[data-aesthetic='swiss']) input,
+:where(html[data-aesthetic='swiss']) select,
+:where(html[data-aesthetic='swiss']) textarea {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  min-height: 44px;
+  box-shadow: none;
+}
+:where(html[data-aesthetic='swiss']) .button,
+:where(html[data-aesthetic='swiss']) .icon-button,
+:where(html[data-aesthetic='swiss']) .appearance-option {
+  border-radius: 0;
+  box-shadow: none;
+}
+:where(html[data-aesthetic='swiss']) .button {
+  min-height: 44px;
+  padding: 11px 17px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .button.primary,
+html[data-aesthetic='swiss'].dark .button.primary {
+  background: var(--text);
+  color: var(--background);
+  border-color: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .button.primary:hover,
+html[data-aesthetic='swiss'].dark .button.primary:hover {
+  background: var(--signal);
+  color: #111;
+  border-color: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .button.secondary:hover,
+:where(html[data-aesthetic='swiss']) .button.secondary.selected {
+  border-color: var(--border);
+  background: var(--surface-hover);
+}
+:where(html[data-aesthetic='swiss']) .button.danger {
+  background: #ad2513;
+  color: #fff;
+  border-color: #ad2513;
+}
+:where(html[data-aesthetic='swiss']) .icon-button {
+  color: var(--text);
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='swiss']) .text-link {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+:where(html[data-aesthetic='swiss']) .eyebrow,
+:where(html[data-aesthetic='swiss']) .nav-label,
+:where(html[data-aesthetic='swiss']) .section-kicker,
+:where(html[data-aesthetic='swiss']) .page-footer,
+:where(html[data-aesthetic='swiss']) .panel-note,
+:where(html[data-aesthetic='swiss']) .private-indicator,
+:where(html[data-aesthetic='swiss']) .date-chip {
+  font-family: 'Courier New', monospace;
+}
+:where(html[data-aesthetic='swiss']) .eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1.3px;
+  margin-bottom: 14px;
+}
+:where(html[data-aesthetic='swiss']) .app-layout {
+  min-height: 100dvh;
+}
+:where(html[data-aesthetic='swiss']) .sidebar {
+  width: 234px;
+  padding: 28px 18px 0;
+  background: var(--sidebar);
+  border-right: 2px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .sidebar-logo {
+  padding: 0 0 26px;
+  border-bottom: 5px solid var(--text);
+  margin-bottom: 22px;
+}
+:where(html[data-aesthetic='swiss']) .brand {
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: -1.8px;
+}
+:where(html[data-aesthetic='swiss']) .brand-icon {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .brand-dot {
+  color: var(--signal);
+}
+:where(html[data-aesthetic='swiss']) .workspace-label {
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 28px;
+  padding: 0;
+  font-size: 13px;
+}
+:where(html[data-aesthetic='swiss']) .workspace-label > div {
+  white-space: normal;
+}
+:where(html[data-aesthetic='swiss']) .workspace-label > div > span {
+  font-size: 12px;
+  margin-top: 4px;
+}
+:where(html[data-aesthetic='swiss']) .workspace-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  background: var(--text);
+  color: var(--background);
+  border: 0;
+}
+:where(html[data-aesthetic='swiss']) .workspace-plan {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .nav-label {
+  padding-left: 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+:where(html[data-aesthetic='swiss']) .nav-item {
+  border-radius: 0;
+  padding: 13px 9px;
+  font-size: 14px;
+  color: var(--text);
+  gap: 9px;
+  border-top: 1px solid var(--border);
+  margin-bottom: 0;
+}
+:where(html[data-aesthetic='swiss']) .nav-item.active {
+  background: var(--signal);
+  color: #111;
+  font-weight: 700;
+}
+:where(html[data-aesthetic='swiss']) .nav-item.active:hover {
+  background: var(--signal);
+  color: #111;
+}
+:where(html[data-aesthetic='swiss']) .nav-index {
+  font:
+    12px 'Courier New',
+    monospace;
+}
+:where(html[data-aesthetic='swiss']) .sidebar nav .nav-item > svg {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .nav-count {
+  border-radius: 0;
+  background: transparent;
+  font:
+    12px 'Courier New',
+    monospace;
+}
+:where(html[data-aesthetic='swiss']) .active .nav-count {
+  background: transparent;
+}
+:where(html[data-aesthetic='swiss']) .sidebar-bottom {
+  padding-top: 25px;
+}
+:where(html[data-aesthetic='swiss']) .sidebar-note {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  margin: 0 0 24px;
+  padding: 0;
+}
+:where(html[data-aesthetic='swiss']) .small-spark {
+  color: var(--signal);
+  font-size: 34px;
+}
+:where(html[data-aesthetic='swiss']) .sidebar-note strong {
+  font-size: 16px;
+  letter-spacing: -0.4px;
+}
+:where(html[data-aesthetic='swiss']) .sidebar-note p,
+:where(html[data-aesthetic='swiss']) .sidebar-note a {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .theme-toggle {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .theme-switch,
+:where(html[data-aesthetic='swiss']) .theme-switch:before {
+  border-radius: 0;
+}
+:where(html[data-aesthetic='swiss']) .user-card {
+  padding: 16px 0;
+  border-top: 2px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .user-card strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .user-card small {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .avatar,
+:where(html[data-aesthetic='swiss']) .company-avatar {
+  border-radius: 0;
+  background: var(--surface-hover);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .main-shell {
+  margin-left: 234px;
+}
+:where(html[data-aesthetic='swiss']) .topbar {
+  height: 65px;
+  padding: 0 32px;
+  border-bottom: 2px solid var(--border);
+  background: var(--background);
+}
+:where(html[data-aesthetic='swiss']) .breadcrumb {
+  gap: 10px;
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .breadcrumb strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+:where(html[data-aesthetic='swiss']) .breadcrumb > svg {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .slash {
+  color: var(--muted);
+}
+:where(html[data-aesthetic='swiss']) .private-indicator {
+  font-size: 12px;
+  color: var(--muted);
+}
+:where(html[data-aesthetic='swiss']) .private-indicator > span,
+:where(html[data-aesthetic='swiss']) .live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 0;
+  background: var(--accent);
+}
+:where(html[data-aesthetic='swiss']) .demo-banner {
+  background: var(--text);
+  color: var(--background);
+  border-bottom: 0;
+  font-size: 12px;
+  padding: 9px 32px;
+}
+:where(html[data-aesthetic='swiss']) .demo-banner a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+:where(html[data-aesthetic='swiss']) .main-content {
+  padding: 36px 32px 20px;
+}
+:where(html[data-aesthetic='swiss']) .page-heading {
+  align-items: flex-end;
+  padding-bottom: 26px;
+  margin-bottom: 0;
+  border-bottom: 4px solid var(--text);
+  gap: 24px;
+}
+:where(html[data-aesthetic='swiss']) .page-heading h1 {
+  font-size: clamp(34px, 3.7vw, 59px);
+  letter-spacing: -2.2px;
+  line-height: 1.02;
+  max-width: 850px;
+}
+:where(html[data-aesthetic='swiss']) .page-heading p {
+  font-size: 14px;
+  margin-top: 17px;
+  max-width: 600px;
+}
+:where(html[data-aesthetic='swiss']) .page-heading > .button {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+:where(html[data-aesthetic='swiss']) .heading-dot {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .summary-grid {
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 32px;
+}
+:where(html[data-aesthetic='swiss']) .summary-card,
+:where(html[data-aesthetic='swiss']) .summary-featured,
+html[data-aesthetic='swiss'].dark .summary-featured {
+  border: 0;
+  border-right: 1px solid var(--border);
+  border-radius: 0;
+  padding: 23px 15px;
+  background: none;
+  box-shadow: none;
+}
+:where(html[data-aesthetic='swiss']) .summary-card:last-child {
+  border-right: 0;
+}
+:where(html[data-aesthetic='swiss']) .summary-featured,
+html[data-aesthetic='swiss'].dark .summary-featured {
+  background: var(--signal);
+}
+:where(html[data-aesthetic='swiss']) .summary-featured .summary-top > span,
+:where(html[data-aesthetic='swiss']) .summary-featured > small,
+:where(html[data-aesthetic='swiss']) .summary-featured > strong,
+:where(html[data-aesthetic='swiss']) .summary-featured .metric-icon {
+  color: #111;
+}
+:where(html[data-aesthetic='swiss']) .summary-top > span {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .summary-card > strong {
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-top: 24px;
+  font-variant-numeric: tabular-nums;
+}
+:where(html[data-aesthetic='swiss']) .summary-card > strong > span {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .summary-card > small {
+  font-size: 12px;
+  margin-top: 13px;
+}
+:where(html[data-aesthetic='swiss']) .metric-icon {
+  opacity: 1;
+  color: var(--muted);
+}
+:where(html[data-aesthetic='swiss']) .applications-panel {
+  border-radius: 0;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  box-shadow: none;
+}
+:where(html[data-aesthetic='swiss']) .page-heading + .applications-panel,
+:where(html[data-aesthetic='swiss']) .page-heading + .profile-stack {
+  margin-top: 28px;
+}
+:where(html[data-aesthetic='swiss']) .panel-title {
+  padding: 21px 20px;
+  border-bottom: 1px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .panel-title h2 {
+  font-size: 24px;
+  letter-spacing: -0.8px;
+}
+:where(html[data-aesthetic='swiss']) .panel-title h2 > span {
+  background: var(--text);
+  color: var(--surface);
+  border: 0;
+  border-radius: 0;
+  font:
+    12px 'Courier New',
+    monospace;
+}
+:where(html[data-aesthetic='swiss']) .panel-title p {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .panel-note {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .application-tabs {
+  padding: 0 20px;
+  gap: 25px;
+  border-bottom: 1px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .application-tabs > button {
+  font-size: 14px;
+  padding: 16px 0;
+  border-bottom-width: 4px;
+  color: var(--muted);
+}
+:where(html[data-aesthetic='swiss']) .application-tabs > button.active {
+  color: var(--text);
+  border-color: var(--text);
+  font-weight: 700;
+}
+:where(html[data-aesthetic='swiss']) .application-tabs > button > span,
+:where(html[data-aesthetic='swiss']) .application-tabs > button.active > span {
+  border-radius: 0;
+  background: var(--surface-hover);
+  color: var(--text);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .table-toolbar {
+  padding: 17px 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+:where(html[data-aesthetic='swiss']) .search-input {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  flex: 1;
+  min-width: 210px;
+}
+:where(html[data-aesthetic='swiss']) .search-input input {
+  background: transparent;
+  font-size: 14px;
+  box-shadow: none;
+}
+:where(html[data-aesthetic='swiss']) .toolbar-buttons {
+  flex-wrap: wrap;
+}
+:where(html[data-aesthetic='swiss']) .toolbar-buttons .button,
+:where(html[data-aesthetic='swiss']) .sort-control select {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .sort-control {
+  border-radius: 0;
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='swiss']) .sort-control select {
+  background: transparent;
+}
+:where(html[data-aesthetic='swiss']) .filter-count {
+  border-radius: 0;
+}
+:where(html[data-aesthetic='swiss']) .advanced-filters label,
+:where(html[data-aesthetic='swiss']) .advanced-filters input,
+:where(html[data-aesthetic='swiss']) .advanced-filters select {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .active-filters {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .table-scroll {
+  scrollbar-width: auto;
+}
+:where(html[data-aesthetic='swiss']) .applications-table thead {
+  background: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .applications-table th {
+  color: var(--surface);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  padding: 13px 12px;
+  border-color: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .applications-table td {
+  font-size: 14px;
+  height: 66px;
+  border-color: color-mix(in srgb, var(--border) 25%, var(--surface));
+}
+:where(html[data-aesthetic='swiss']) .company-button {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .company-avatar {
+  width: 28px;
+  height: 28px;
+  font-size: 13px;
+}
+:where(html[data-aesthetic='swiss']) .company-color-0,
+:where(html[data-aesthetic='swiss']) .company-color-1,
+:where(html[data-aesthetic='swiss']) .company-color-2,
+:where(html[data-aesthetic='swiss']) .company-color-3,
+:where(html[data-aesthetic='swiss']) .company-color-4,
+:where(html[data-aesthetic='swiss']) .company-color-5 {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .job-link {
+  font-size: 12px;
+  color: var(--accent);
+}
+:where(html[data-aesthetic='swiss']) .status-badge {
+  border-radius: 0;
+  border: 1px solid currentColor;
+  font-size: 14px;
+  padding: 4px 7px;
+}
+:where(html[data-aesthetic='swiss']) .status-dot {
+  border-radius: 0;
+  width: 5px;
+  height: 5px;
+}
+:where(html[data-aesthetic='swiss']) .tone-slate {
+  --badge-text: #364354;
+}
+:where(html[data-aesthetic='swiss']) .tone-blue {
+  --badge-text: #123e8e;
+}
+:where(html[data-aesthetic='swiss']) .tone-amber {
+  --badge-text: #705000;
+}
+:where(html[data-aesthetic='swiss']) .tone-purple,
+:where(html[data-aesthetic='swiss']) .tone-violet {
+  --badge-text: #63317f;
+}
+:where(html[data-aesthetic='swiss']) .tone-indigo {
+  --badge-text: #343e8a;
+}
+:where(html[data-aesthetic='swiss']) .tone-cyan {
+  --badge-text: #00646a;
+}
+:where(html[data-aesthetic='swiss']) .tone-pink {
+  --badge-text: #8d2358;
+}
+:where(html[data-aesthetic='swiss']) .tone-green,
+:where(html[data-aesthetic='swiss']) .tone-emerald {
+  --badge-text: #145d36;
+}
+:where(html[data-aesthetic='swiss']) .tone-red {
+  --badge-text: #9d2525;
+}
+:where(html[data-aesthetic='swiss']) .tone-gray {
+  --badge-text: #48505c;
+}
+:where(html[data-aesthetic='swiss']) .tone-stone {
+  --badge-text: #645040;
+}
+:where(html[data-aesthetic='swiss']) .table-actions .icon-button {
+  opacity: 1;
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='swiss']) .table-footer {
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .pagination > .icon-button {
+  border-color: var(--border);
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='swiss']) .empty-icon,
+:where(html[data-aesthetic='swiss']) .loading-bar,
+:where(html[data-aesthetic='swiss']) .date-chip {
+  border-radius: 0;
+}
+:where(html[data-aesthetic='swiss']) .dashboard-bottom {
+  gap: 0;
+  border-top: 3px solid var(--text);
+  border-bottom: 1px solid var(--border);
+  margin-top: 32px;
+}
+:where(html[data-aesthetic='swiss']) .momentum-card,
+:where(html[data-aesthetic='swiss']) .next-card,
+html[data-aesthetic='swiss'].dark .next-card {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  padding: 24px 0;
+}
+:where(html[data-aesthetic='swiss']) .momentum-card {
+  border-right: 1px solid var(--border);
+  padding-right: 25px;
+}
+:where(html[data-aesthetic='swiss']) .next-card {
+  padding-left: 25px;
+}
+:where(html[data-aesthetic='swiss']) .section-kicker {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+:where(html[data-aesthetic='swiss']) .momentum-card h3,
+:where(html[data-aesthetic='swiss']) .next-card h3 {
+  font-size: 24px;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+}
+:where(html[data-aesthetic='swiss']) .momentum-card p,
+:where(html[data-aesthetic='swiss']) .next-card p,
+:where(html[data-aesthetic='swiss']) .momentum-card .text-link,
+:where(html[data-aesthetic='swiss']) .next-card .text-link {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .mini-bars > span {
+  border-radius: 0;
+  background: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .mini-bars > span:nth-last-child(2),
+:where(html[data-aesthetic='swiss']) .mini-bars > span:last-child {
+  background: var(--signal);
+}
+:where(html[data-aesthetic='swiss']) .page-footer {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .date-chip {
+  border-color: var(--border);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .rates-grid {
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .rate-card {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  border-right: 1px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .rate-card:last-child {
+  border-right: 0;
+}
+:where(html[data-aesthetic='swiss']) .rate-card > span {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .rate-card > strong {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+:where(html[data-aesthetic='swiss']) .rate-card > p {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .chart-card {
+  border: 1px solid var(--border);
+  border-top-width: 4px;
+  border-radius: 0;
+  padding: 22px;
+  background: var(--surface);
+}
+:where(html[data-aesthetic='swiss']) .chart-heading h2 {
+  font-size: 24px;
+  letter-spacing: -0.8px;
+}
+:where(html[data-aesthetic='swiss']) .chart-heading p,
+:where(html[data-aesthetic='swiss']) .statistics-note {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .chart-canvas {
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+}
+:where(html[data-aesthetic='swiss']) .profile-stack {
+  max-width: 960px;
+}
+:where(html[data-aesthetic='swiss']) .settings-card {
+  border: 1px solid var(--border);
+  border-top-width: 4px;
+  border-radius: 0;
+  padding: 26px;
+}
+:where(html[data-aesthetic='swiss']) .settings-heading h2 {
+  font-size: 24px;
+  letter-spacing: -0.8px;
+}
+:where(html[data-aesthetic='swiss']) .settings-heading p,
+:where(html[data-aesthetic='swiss']) .profile-form small,
+:where(html[data-aesthetic='swiss']) .demo-profile p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .appearance-option {
+  border: 1px solid var(--border);
+  background: var(--background);
+}
+:where(html[data-aesthetic='swiss']) .appearance-option.active {
+  outline-color: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .appearance-option > strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .theme-preview {
+  border: 1px solid #111;
+  border-radius: 0;
+  background: #fff;
+}
+:where(html[data-aesthetic='swiss']) .theme-preview:before {
+  background: #111;
+}
+:where(html[data-aesthetic='swiss']) .theme-preview i {
+  border-radius: 0;
+  background: #ff4b23;
+}
+:where(html[data-aesthetic='swiss']) .theme-dark {
+  background: #202020;
+}
+:where(html[data-aesthetic='swiss']) .theme-dark:before {
+  background: #f4f4ef;
+}
+:where(html[data-aesthetic='swiss']) .theme-system {
+  background: linear-gradient(90deg, #fff 50%, #202020 50%);
+}
+:where(html[data-aesthetic='swiss']) .privacy-card {
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: none;
+  color: var(--text);
+}
+:where(html[data-aesthetic='swiss']) .privacy-card p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .modal-overlay {
+  background: #0009;
+  backdrop-filter: none;
+}
+:where(html[data-aesthetic='swiss']) .modal-content {
+  border: 2px solid var(--border);
+  border-radius: 0;
+  box-shadow: 8px 8px 0 #0005;
+}
+:where(html[data-aesthetic='swiss']) .modal-heading {
+  border-bottom: 3px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .modal-heading h2 {
+  font-size: 26px;
+  letter-spacing: -1px;
+}
+:where(html[data-aesthetic='swiss']) .modal-heading p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .modal-footer {
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='swiss']) .modal-footer > span {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='swiss']) .notes,
+:where(html[data-aesthetic='swiss']) .error-message,
+:where(html[data-aesthetic='swiss']) .success-message {
+  border-radius: 0;
+}
+:where(html[data-aesthetic='swiss']) .toast {
+  background: var(--text);
+  color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--signal);
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .auth-layout {
+  background: var(--background);
+  grid-template-columns: 1.08fr 1fr;
+}
+:where(html[data-aesthetic='swiss']) .auth-story {
+  background: var(--signal);
+  color: #111;
+  border-right: 2px solid #111;
+  padding: 40px 48px;
+}
+:where(html[data-aesthetic='swiss']) .auth-story .brand-dot {
+  color: #111;
+}
+:where(html[data-aesthetic='swiss']) .auth-story .eyebrow,
+:where(html[data-aesthetic='swiss']) .auth-story-content > p,
+:where(html[data-aesthetic='swiss']) .auth-footer {
+  color: #111;
+}
+:where(html[data-aesthetic='swiss']) .auth-story-content {
+  max-width: 620px;
+  padding: 55px 0;
+}
+:where(html[data-aesthetic='swiss']) .auth-story h1 {
+  font-size: clamp(48px, 6.4vw, 100px);
+  font-weight: 800;
+  line-height: 0.93;
+  letter-spacing: -5px;
+}
+:where(html[data-aesthetic='swiss']) .auth-story-content > p {
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: 28px;
+}
+:where(html[data-aesthetic='swiss']) .auth-preview {
+  transform: none;
+  border-radius: 0;
+  border: 0;
+  border-top: 4px solid #111;
+  background: transparent;
+  padding: 0;
+  margin-top: 44px;
+  box-shadow: none;
+}
+:where(html[data-aesthetic='swiss']) .auth-preview-header {
+  border-bottom: 1px solid #111;
+  font:
+    12px 'Courier New',
+    monospace;
+  text-transform: uppercase;
+}
+:where(html[data-aesthetic='swiss']) .auth-preview-header > span:last-child {
+  color: #111;
+}
+:where(html[data-aesthetic='swiss']) .preview-dot {
+  border-radius: 0;
+  background: #111;
+}
+:where(html[data-aesthetic='swiss']) .auth-preview-row {
+  border-bottom: 1px solid #111;
+}
+:where(html[data-aesthetic='swiss']) .auth-preview-row strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+:where(html[data-aesthetic='swiss']) .auth-preview-row small {
+  font-size: 14px;
+  color: #111;
+}
+:where(html[data-aesthetic='swiss']) .step-icon {
+  border-radius: 0;
+  background: #111;
+  color: var(--signal);
+}
+:where(html[data-aesthetic='swiss']) .preview-line {
+  display: none;
+}
+:where(html[data-aesthetic='swiss']) .auth-footer {
+  font:
+    12px 'Courier New',
+    monospace;
+}
+:where(html[data-aesthetic='swiss']) .auth-panel {
+  padding: 50px 40px;
+}
+:where(html[data-aesthetic='swiss']) .auth-box {
+  max-width: 420px;
+}
+:where(html[data-aesthetic='swiss']) .auth-box h2 {
+  font-size: 44px;
+  font-weight: 750;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+:where(html[data-aesthetic='swiss']) .auth-form input {
+  font-size: 16px;
+}
+:where(html[data-aesthetic='swiss']) .auth-box > .auth-switch,
+:where(html[data-aesthetic='swiss']) .demo-link {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='swiss']) .auth-privacy {
+  font-size: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+:where(html[data-aesthetic='swiss']) .setup-card {
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+:where(html[data-aesthetic='swiss']) .standalone-state {
+  background: var(--background);
+}
+@media (min-width: 1600px) {
+  :where(html[data-aesthetic='swiss']) .sidebar {
+    width: 254px;
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+  :where(html[data-aesthetic='swiss']) .main-shell {
+    margin-left: 254px;
+  }
+  :where(html[data-aesthetic='swiss']) .main-content {
+    padding: 44px 48px 24px;
+  }
+  :where(html[data-aesthetic='swiss']) .topbar {
+    padding: 0 48px;
+  }
+}
+@media (max-width: 1350px) {
+  :where(html[data-aesthetic='swiss']) .summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card {
+    border-bottom: 1px solid var(--border);
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card:nth-child(3n) {
+    border-right: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card:nth-last-child(-n + 3) {
+    border-bottom: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .page-heading {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 1050px) {
+  :where(html[data-aesthetic='swiss']) .dashboard-bottom,
+  :where(html[data-aesthetic='swiss']) .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  :where(html[data-aesthetic='swiss']) .momentum-card {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    padding-right: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .next-card {
+    padding-left: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .auth-story {
+    padding: 35px 28px;
+  }
+  :where(html[data-aesthetic='swiss']) .auth-panel {
+    padding: 40px 28px;
+  }
+  :where(html[data-aesthetic='swiss']) .auth-story h1 {
+    letter-spacing: -3px;
+  }
+}
+@media (max-width: 900px) {
+  :where(html[data-aesthetic='swiss']) .sidebar {
+    width: 250px;
+    transform: translateX(-100%);
+  }
+  :where(html[data-aesthetic='swiss']) .sidebar.is-open {
+    transform: translateX(0);
+  }
+  :where(html[data-aesthetic='swiss']) .sidebar .mobile-only,
+  :where(html[data-aesthetic='swiss']) .topbar .mobile-only {
+    display: inline-flex !important;
+  }
+  :where(html[data-aesthetic='swiss']) .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: #0008;
+    z-index: 29;
+    border: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .main-shell {
+    margin-left: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .main-content {
+    padding: 28px 24px 20px;
+  }
+  :where(html[data-aesthetic='swiss']) .topbar {
+    padding: 0 24px;
+  }
+  :where(html[data-aesthetic='swiss']) .demo-banner {
+    padding: 10px 24px;
+  }
+  :where(html[data-aesthetic='swiss']) .toast {
+    left: 50%;
+  }
+}
+@media (max-width: 680px) {
+  :where(html[data-aesthetic='swiss']) .main-content {
+    padding: 25px 16px 16px;
+  }
+  :where(html[data-aesthetic='swiss']) .topbar {
+    height: 60px;
+    padding: 0 16px;
+  }
+  :where(html[data-aesthetic='swiss']) .breadcrumb {
+    gap: 7px;
+  }
+  :where(html[data-aesthetic='swiss']) .breadcrumb > span:first-of-type,
+  :where(html[data-aesthetic='swiss']) .breadcrumb .slash {
+    display: none;
+  }
+  :where(html[data-aesthetic='swiss']) .topbar-right .private-indicator {
+    display: none;
+  }
+  :where(html[data-aesthetic='swiss']) .demo-banner {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .page-heading {
+    padding-bottom: 22px;
+    gap: 20px;
+  }
+  :where(html[data-aesthetic='swiss']) .page-heading h1 {
+    font-size: 38px;
+    letter-spacing: -1.7px;
+  }
+  :where(html[data-aesthetic='swiss']) .page-heading p {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='swiss']) .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card {
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card:nth-child(3n) {
+    border-right: 1px solid var(--border);
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card:nth-child(2n) {
+    border-right: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card:nth-last-child(-n + 3) {
+    border-bottom: 1px solid var(--border);
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .summary-top > span {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card > strong {
+    font-size: 44px;
+  }
+  :where(html[data-aesthetic='swiss']) .summary-card > small {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .panel-title {
+    padding: 17px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  :where(html[data-aesthetic='swiss']) .panel-title h2 {
+    font-size: 23px;
+  }
+  :where(html[data-aesthetic='swiss']) .panel-note {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .application-tabs {
+    padding: 0 12px;
+    gap: 20px;
+  }
+  :where(html[data-aesthetic='swiss']) .application-tabs > button {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='swiss']) .table-toolbar {
+    padding: 14px 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .search-input {
+    min-width: 100%;
+  }
+  :where(html[data-aesthetic='swiss']) .toolbar-buttons {
+    width: 100%;
+    gap: 8px;
+  }
+  :where(html[data-aesthetic='swiss']) .sort-control {
+    flex: 1;
+    min-width: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .sort-control select {
+    width: 100%;
+    max-width: none;
+  }
+  :where(html[data-aesthetic='swiss']) .advanced-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  :where(html[data-aesthetic='swiss']) .applications-table td,
+  :where(html[data-aesthetic='swiss']) .company-button {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='swiss']) .applications-table th {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .table-footer {
+    font-size: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .rates-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :where(html[data-aesthetic='swiss']) .rate-card {
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  :where(html[data-aesthetic='swiss']) .rate-card:nth-child(2n) {
+    border-right: 0;
+  }
+  :where(html[data-aesthetic='swiss']) .rate-card > p,
+  :where(html[data-aesthetic='swiss']) .page-footer {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .chart-heading h2,
+  :where(html[data-aesthetic='swiss']) .settings-heading h2 {
+    font-size: 22px;
+  }
+  :where(html[data-aesthetic='swiss']) .chart-heading p,
+  :where(html[data-aesthetic='swiss']) .statistics-note {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='swiss']) .chart-card {
+    padding: 18px 12px;
+  }
+  :where(html[data-aesthetic='swiss']) .auth-layout {
+    display: block;
+  }
+  :where(html[data-aesthetic='swiss']) .auth-story {
+    min-height: 0;
+    padding: 24px;
+    border-right: 0;
+    border-bottom: 2px solid #111;
+  }
+  :where(html[data-aesthetic='swiss']) .auth-story-content,
+  :where(html[data-aesthetic='swiss']) .auth-footer {
+    display: none;
+  }
+  :where(html[data-aesthetic='swiss']) .auth-panel {
+    padding: 42px 24px;
+    min-height: calc(100dvh - 85px);
+  }
+  :where(html[data-aesthetic='swiss']) .auth-box h2 {
+    font-size: 40px;
+  }
+  :where(html[data-aesthetic='swiss']) .modal-footer .button {
+    font-size: 14px;
+  }
+}
+@media (max-height: 760px) and (min-width: 901px) {
+  :where(html[data-aesthetic='swiss']) .sidebar-note {
+    display: none;
+  }
+}
+
+html[data-aesthetic='vintage'] {
+  --background: #e9e1d6;
+  --surface: #f2ece3;
+  --surface-hover: #e6dbcd;
+  --text: #45372e;
+  --muted: #756456;
+  --border: #d2c4b4;
+  --accent: #795943;
+  --accent-strong: #614432;
+  --accent-soft: #e5d7c5;
+  --sidebar: #e1d6c7;
+  --shadow: 0 4px 18px #49352106;
+  --font-sans: 'Segoe UI', Arial, sans-serif;
+}
+html[data-aesthetic='vintage'].dark {
+  --background: #27221e;
+  --surface: #322b25;
+  --surface-hover: #40362d;
+  --text: #e6dace;
+  --muted: #bdab98;
+  --border: #514437;
+  --accent: #d2ad8b;
+  --accent-strong: #e1bea0;
+  --accent-soft: #47392c;
+  --sidebar: #2b241e;
+  --shadow: 0 4px 18px #00000010;
+  color-scheme: dark;
+}
+html[data-aesthetic='vintage'] {
+  --background: #e7dccb;
+  --surface: #efe6d8;
+  --sidebar: #ddd0bb;
+  --border: #c8b599;
+  --accent-soft: #dfceb4;
+}
+html[data-aesthetic='vintage'].dark {
+  --background: #27221d;
+  --surface: #342b23;
+  --sidebar: #2d251e;
+  --border: #685440;
+  --accent-soft: #493928;
+}
+/* Warm neutral theme: tonal surfaces, soft edges, and quiet typography. */
+:where(html[data-aesthetic='vintage']) body {
+  font-family: var(--font-sans);
+}
+:where(html[data-aesthetic='vintage']) ::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+:where(html[data-aesthetic='vintage']) h1,
+:where(html[data-aesthetic='vintage']) h2,
+:where(html[data-aesthetic='vintage']) h3 {
+  font-weight: 600;
+}
+:where(html[data-aesthetic='vintage']) button:focus-visible,
+:where(html[data-aesthetic='vintage']) a:focus-visible,
+:where(html[data-aesthetic='vintage']) input:focus-visible,
+:where(html[data-aesthetic='vintage']) select:focus-visible,
+:where(html[data-aesthetic='vintage']) textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+:where(html[data-aesthetic='vintage']) input,
+:where(html[data-aesthetic='vintage']) select,
+:where(html[data-aesthetic='vintage']) textarea {
+  background: var(--surface);
+  border-color: var(--border);
+  border-radius: 9px;
+  min-height: 44px;
+}
+:where(html[data-aesthetic='vintage']) .button {
+  min-height: 42px;
+  border-radius: 9px;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+  box-shadow: 0 2px 4px #4935210a;
+}
+:where(html[data-aesthetic='vintage']) .button.primary:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+html[data-aesthetic='vintage'].dark .button.primary {
+  color: #2b2119;
+}
+:where(html[data-aesthetic='vintage']) .secondary:hover,
+:where(html[data-aesthetic='vintage']) .secondary.selected {
+  border-color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .icon-button {
+  border-radius: 7px;
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='vintage']) .text-link {
+  color: var(--accent);
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  font-weight: 500;
+}
+:where(html[data-aesthetic='vintage']) .sidebar {
+  border-right-color: var(--border);
+  background: var(--sidebar);
+}
+:where(html[data-aesthetic='vintage']) .sidebar-logo {
+  padding-bottom: 28px;
+}
+:where(html[data-aesthetic='vintage']) .brand {
+  font-size: 27px;
+  letter-spacing: -1px;
+}
+:where(html[data-aesthetic='vintage']) .brand-icon {
+  background: var(--accent);
+  color: var(--surface);
+  border-radius: 10px;
+  transform: none;
+}
+:where(html[data-aesthetic='vintage']) .brand-icon > svg {
+  transform: none;
+}
+:where(html[data-aesthetic='vintage']) .workspace-label {
+  border-radius: 11px;
+  background: var(--surface);
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .workspace-label > div {
+  white-space: normal;
+}
+:where(html[data-aesthetic='vintage']) .workspace-label > div > span {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .workspace-plan {
+  display: none;
+}
+:where(html[data-aesthetic='vintage']) .nav-label {
+  font-size: 12px;
+  letter-spacing: 0.8px;
+}
+:where(html[data-aesthetic='vintage']) .nav-item {
+  font-size: 14px;
+  border-radius: 9px;
+  color: var(--muted);
+}
+:where(html[data-aesthetic='vintage']) .nav-item.active {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+:where(html[data-aesthetic='vintage']) .nav-item.active > svg {
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .nav-count,
+:where(html[data-aesthetic='vintage']) .active .nav-count {
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .sidebar-note {
+  background: var(--surface);
+  border-radius: 12px;
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .sidebar-note strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .sidebar-note p,
+:where(html[data-aesthetic='vintage']) .sidebar-note a {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .small-spark {
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .theme-toggle {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .user-card strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .user-card small {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .avatar {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .topbar {
+  background: var(--background);
+  border-bottom-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .breadcrumb strong {
+  color: var(--text);
+  font-weight: 600;
+}
+:where(html[data-aesthetic='vintage']) .breadcrumb > svg {
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .slash {
+  color: var(--muted);
+}
+:where(html[data-aesthetic='vintage']) .private-indicator {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .private-indicator > span,
+:where(html[data-aesthetic='vintage']) .live-dot {
+  background: #79816b;
+}
+:where(html[data-aesthetic='vintage']) .demo-banner {
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .demo-banner a {
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .main-content {
+  padding-top: 36px;
+}
+:where(html[data-aesthetic='vintage']) .page-heading h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(30px, 3vw, 43px);
+  letter-spacing: -1px;
+  line-height: 1.14;
+}
+:where(html[data-aesthetic='vintage']) .page-heading p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+:where(html[data-aesthetic='vintage']) .page-heading {
+  align-items: center;
+  gap: 22px;
+}
+:where(html[data-aesthetic='vintage']) .heading-dot {
+  display: none;
+}
+:where(html[data-aesthetic='vintage']) .summary-grid {
+  gap: 12px;
+}
+:where(html[data-aesthetic='vintage']) .summary-card {
+  border-radius: 13px;
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+  padding: 19px 15px;
+}
+:where(html[data-aesthetic='vintage']) .summary-featured,
+html[data-aesthetic='vintage'].dark .summary-featured {
+  background: var(--accent-soft);
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .summary-top > span {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .summary-featured .summary-top > span {
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .summary-card > strong {
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+:where(html[data-aesthetic='vintage']) .summary-card > small {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .metric-icon {
+  color: var(--accent);
+  opacity: 0.8;
+}
+:where(html[data-aesthetic='vintage']) .applications-panel {
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .panel-title h2 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+:where(html[data-aesthetic='vintage']) .panel-title h2 > span {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 0;
+  font-size: 12px;
+  border-radius: 6px;
+}
+:where(html[data-aesthetic='vintage']) .panel-title p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .panel-note {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .application-tabs {
+  gap: 24px;
+}
+:where(html[data-aesthetic='vintage']) .application-tabs > button {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .application-tabs > button > span {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .table-toolbar {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+:where(html[data-aesthetic='vintage']) .search-input {
+  flex: 1;
+  min-width: 210px;
+  border-radius: 9px;
+}
+:where(html[data-aesthetic='vintage']) .search-input input {
+  font-size: 14px;
+  background: transparent;
+}
+:where(html[data-aesthetic='vintage']) .toolbar-buttons {
+  flex-wrap: wrap;
+}
+:where(html[data-aesthetic='vintage']) .toolbar-buttons .button,
+:where(html[data-aesthetic='vintage']) .sort-control select {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .sort-control {
+  border-radius: 9px;
+}
+:where(html[data-aesthetic='vintage']) .advanced-filters label,
+:where(html[data-aesthetic='vintage']) .advanced-filters input,
+:where(html[data-aesthetic='vintage']) .advanced-filters select {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .active-filters {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .applications-table thead {
+  background: var(--surface-hover);
+}
+:where(html[data-aesthetic='vintage']) .applications-table th {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+:where(html[data-aesthetic='vintage']) .applications-table td {
+  font-size: 14px;
+  border-color: color-mix(in srgb, var(--border) 65%, var(--surface));
+}
+:where(html[data-aesthetic='vintage']) .company-button {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .company-avatar {
+  border-radius: 9px;
+  border-color: var(--border);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .company-color-0,
+:where(html[data-aesthetic='vintage']) .company-color-1,
+:where(html[data-aesthetic='vintage']) .company-color-2,
+:where(html[data-aesthetic='vintage']) .company-color-3,
+:where(html[data-aesthetic='vintage']) .company-color-4,
+:where(html[data-aesthetic='vintage']) .company-color-5 {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .job-link {
+  font-size: 12px;
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .status-badge {
+  font-size: 14px;
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+:where(html[data-aesthetic='vintage']) .tone-slate,
+:where(html[data-aesthetic='vintage']) .tone-gray,
+:where(html[data-aesthetic='vintage']) .tone-stone {
+  --badge-bg: #e2dbd1;
+  --badge-text: #61564c;
+}
+:where(html[data-aesthetic='vintage']) .tone-blue,
+:where(html[data-aesthetic='vintage']) .tone-cyan {
+  --badge-bg: #dae1dc;
+  --badge-text: #435f56;
+}
+:where(html[data-aesthetic='vintage']) .tone-amber {
+  --badge-bg: #e9dfc6;
+  --badge-text: #705c31;
+}
+:where(html[data-aesthetic='vintage']) .tone-purple,
+:where(html[data-aesthetic='vintage']) .tone-violet,
+:where(html[data-aesthetic='vintage']) .tone-indigo,
+:where(html[data-aesthetic='vintage']) .tone-pink {
+  --badge-bg: #e4d9df;
+  --badge-text: #705969;
+}
+:where(html[data-aesthetic='vintage']) .tone-green,
+:where(html[data-aesthetic='vintage']) .tone-emerald {
+  --badge-bg: #dde1ce;
+  --badge-text: #58623d;
+}
+:where(html[data-aesthetic='vintage']) .tone-red {
+  --badge-bg: #ecdad2;
+  --badge-text: #875344;
+}
+html[data-aesthetic='vintage'].dark .status-badge {
+  background: color-mix(in srgb, var(--badge-text) 22%, var(--surface));
+  color: color-mix(in srgb, var(--badge-text) 25%, #f1e4d6);
+}
+:where(html[data-aesthetic='vintage']) .table-actions .icon-button {
+  opacity: 1;
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='vintage']) .table-footer {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .pagination > .icon-button {
+  min-width: 32px;
+  min-height: 32px;
+}
+:where(html[data-aesthetic='vintage']) .momentum-card,
+:where(html[data-aesthetic='vintage']) .next-card,
+html[data-aesthetic='vintage'].dark .next-card {
+  border-radius: 14px;
+  background: var(--surface);
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .next-card {
+  background: var(--accent-soft);
+}
+:where(html[data-aesthetic='vintage']) .section-kicker {
+  font-size: 12px;
+  letter-spacing: 0.8px;
+}
+:where(html[data-aesthetic='vintage']) .momentum-card h3,
+:where(html[data-aesthetic='vintage']) .next-card h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+}
+:where(html[data-aesthetic='vintage']) .momentum-card p,
+:where(html[data-aesthetic='vintage']) .next-card p,
+:where(html[data-aesthetic='vintage']) .momentum-card .text-link,
+:where(html[data-aesthetic='vintage']) .next-card .text-link {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .mini-bars > span {
+  background: var(--accent-soft);
+  border-radius: 4px 4px 0 0;
+}
+:where(html[data-aesthetic='vintage']) .mini-bars > span:nth-last-child(2) {
+  background: color-mix(in srgb, var(--accent) 50%, var(--surface));
+}
+:where(html[data-aesthetic='vintage']) .mini-bars > span:last-child {
+  background: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .page-footer {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .rate-card,
+:where(html[data-aesthetic='vintage']) .chart-card,
+:where(html[data-aesthetic='vintage']) .settings-card {
+  border-radius: 14px;
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+:where(html[data-aesthetic='vintage']) .rate-card > span,
+:where(html[data-aesthetic='vintage']) .chart-heading p,
+:where(html[data-aesthetic='vintage']) .statistics-note {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .rate-card > p {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .chart-heading h2,
+:where(html[data-aesthetic='vintage']) .settings-heading h2 {
+  font-size: 21px;
+}
+:where(html[data-aesthetic='vintage']) .date-chip {
+  font-size: 12px;
+  border-radius: 8px;
+}
+:where(html[data-aesthetic='vintage']) .profile-form small,
+:where(html[data-aesthetic='vintage']) .settings-heading p,
+:where(html[data-aesthetic='vintage']) .demo-profile p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .appearance-option {
+  border-radius: 11px;
+  background: var(--background);
+}
+:where(html[data-aesthetic='vintage']) .appearance-option > strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .theme-preview {
+  border-color: #c5b4a0;
+  background: #f2ece3;
+}
+:where(html[data-aesthetic='vintage']) .theme-preview:before,
+:where(html[data-aesthetic='vintage']) .theme-preview i {
+  background: #d6c3ac;
+}
+:where(html[data-aesthetic='vintage']) .theme-dark {
+  background: #322b25;
+  border-color: #514437;
+}
+:where(html[data-aesthetic='vintage']) .theme-dark:before,
+:where(html[data-aesthetic='vintage']) .theme-dark i {
+  background: #66513f;
+}
+:where(html[data-aesthetic='vintage']) .theme-system {
+  background: linear-gradient(90deg, #f2ece3 50%, #322b25 50%);
+}
+:where(html[data-aesthetic='vintage']) .privacy-card {
+  border-radius: 13px;
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .privacy-card p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .modal-overlay {
+  background: #30251eb3;
+  backdrop-filter: blur(2px);
+}
+:where(html[data-aesthetic='vintage']) .modal-content {
+  border-radius: 16px;
+  border-color: var(--border);
+  box-shadow: 0 18px 60px #24180e33;
+}
+:where(html[data-aesthetic='vintage']) .modal-heading h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 27px;
+  font-weight: 400;
+}
+:where(html[data-aesthetic='vintage']) .modal-heading p {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .modal-footer > span {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .error-message {
+  background: #ead9cf;
+  color: #813d30;
+  border-color: #c4a292;
+}
+:where(html[data-aesthetic='vintage']) .success-message {
+  color: var(--accent);
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .toast {
+  background: var(--text);
+  color: var(--surface);
+  font-size: 14px;
+  border-radius: 11px;
+}
+:where(html[data-aesthetic='vintage']) .auth-layout {
+  background: var(--background);
+}
+:where(html[data-aesthetic='vintage']) .auth-story {
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+}
+:where(html[data-aesthetic='vintage']) .auth-story h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(40px, 4.7vw, 68px);
+  font-weight: 400;
+  letter-spacing: -1.8px;
+  line-height: 1.1;
+}
+:where(html[data-aesthetic='vintage']) .auth-story-content > p {
+  color: var(--muted);
+  font-size: 16px;
+}
+:where(html[data-aesthetic='vintage']) .auth-story .eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .auth-preview {
+  transform: none;
+  border-radius: 15px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-color: var(--border);
+}
+:where(html[data-aesthetic='vintage']) .auth-preview-header {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .auth-preview-row strong {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .auth-preview-row small {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .step-icon,
+:where(html[data-aesthetic='vintage']) .step-1,
+:where(html[data-aesthetic='vintage']) .step-2 {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+:where(html[data-aesthetic='vintage']) .auth-footer {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .auth-box h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.9px;
+}
+:where(html[data-aesthetic='vintage']) .auth-form input {
+  font-size: 16px;
+}
+:where(html[data-aesthetic='vintage']) .auth-box > .auth-switch,
+:where(html[data-aesthetic='vintage']) .demo-link {
+  font-size: 14px;
+}
+:where(html[data-aesthetic='vintage']) .auth-privacy {
+  font-size: 12px;
+}
+:where(html[data-aesthetic='vintage']) .setup-card {
+  background: var(--accent-soft);
+  border-radius: 12px;
+}
+@media (max-width: 1400px) {
+  :where(html[data-aesthetic='vintage']) .summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  :where(html[data-aesthetic='vintage']) .page-heading {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 1050px) {
+  :where(html[data-aesthetic='vintage']) .dashboard-bottom,
+  :where(html[data-aesthetic='vintage']) .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  :where(html[data-aesthetic='vintage']) .auth-story {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  :where(html[data-aesthetic='vintage']) .auth-panel {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 900px) {
+  :where(html[data-aesthetic='vintage']) .sidebar {
+    width: 250px;
+    transform: translateX(-100%);
+    overflow-y: auto;
+  }
+  :where(html[data-aesthetic='vintage']) .sidebar.is-open {
+    transform: translateX(0);
+  }
+  :where(html[data-aesthetic='vintage']) .sidebar .mobile-only,
+  :where(html[data-aesthetic='vintage']) .topbar .mobile-only {
+    display: inline-flex !important;
+  }
+  :where(html[data-aesthetic='vintage']) .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: #30251e80;
+    z-index: 29;
+    border: 0;
+  }
+  :where(html[data-aesthetic='vintage']) .main-shell {
+    margin-left: 0;
+  }
+  :where(html[data-aesthetic='vintage']) .toast {
+    left: 50%;
+  }
+}
+@media (max-width: 680px) {
+  :where(html[data-aesthetic='vintage']) .main-content {
+    padding: 27px 16px 16px;
+  }
+  :where(html[data-aesthetic='vintage']) .page-heading h1 {
+    font-size: 32px;
+  }
+  :where(html[data-aesthetic='vintage']) .page-heading p {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='vintage']) .topbar {
+    padding: 0 16px;
+  }
+  :where(html[data-aesthetic='vintage']) .breadcrumb {
+    gap: 7px;
+  }
+  :where(html[data-aesthetic='vintage']) .breadcrumb > span:first-of-type,
+  :where(html[data-aesthetic='vintage']) .breadcrumb .slash {
+    display: none;
+  }
+  :where(html[data-aesthetic='vintage']) .topbar-right .private-indicator {
+    display: none;
+  }
+  :where(html[data-aesthetic='vintage']) .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  :where(html[data-aesthetic='vintage']) .summary-card {
+    padding: 16px 12px;
+  }
+  :where(html[data-aesthetic='vintage']) .summary-top > span {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='vintage']) .summary-card > small {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='vintage']) .panel-title {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 18px 14px;
+  }
+  :where(html[data-aesthetic='vintage']) .panel-title h2 {
+    font-size: 21px;
+  }
+  :where(html[data-aesthetic='vintage']) .panel-note {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='vintage']) .application-tabs {
+    padding: 0 14px;
+    gap: 20px;
+  }
+  :where(html[data-aesthetic='vintage']) .application-tabs > button {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='vintage']) .table-toolbar {
+    padding: 14px;
+  }
+  :where(html[data-aesthetic='vintage']) .search-input {
+    min-width: 100%;
+  }
+  :where(html[data-aesthetic='vintage']) .toolbar-buttons {
+    width: 100%;
+    gap: 8px;
+  }
+  :where(html[data-aesthetic='vintage']) .sort-control {
+    flex: 1;
+    min-width: 0;
+  }
+  :where(html[data-aesthetic='vintage']) .sort-control select {
+    width: 100%;
+    max-width: none;
+  }
+  :where(html[data-aesthetic='vintage']) .advanced-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  :where(html[data-aesthetic='vintage']) .applications-table td,
+  :where(html[data-aesthetic='vintage']) .company-button {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='vintage']) .applications-table th {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='vintage']) .table-footer {
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='vintage']) .rate-card > p,
+  :where(html[data-aesthetic='vintage']) .page-footer {
+    font-size: 12px;
+  }
+  :where(html[data-aesthetic='vintage']) .chart-heading h2 {
+    font-size: 21px;
+  }
+  :where(html[data-aesthetic='vintage']) .chart-heading p,
+  :where(html[data-aesthetic='vintage']) .statistics-note {
+    font-size: 14px;
+  }
+  :where(html[data-aesthetic='vintage']) .auth-layout {
+    display: block;
+  }
+  :where(html[data-aesthetic='vintage']) .auth-story {
+    background: var(--sidebar);
+    min-height: 0;
+    padding: 24px;
+    border-right: 0;
+  }
+  :where(html[data-aesthetic='vintage']) .auth-story-content,
+  :where(html[data-aesthetic='vintage']) .auth-footer {
+    display: none;
+  }
+  :where(html[data-aesthetic='vintage']) .auth-panel {
+    padding: 38px 24px;
+  }
+  :where(html[data-aesthetic='vintage']) .auth-box h2 {
+    font-size: 32px;
+  }
+  :where(html[data-aesthetic='vintage']) .modal-footer .button {
+    font-size: 14px;
+  }
+}
+@media (max-height: 760px) and (min-width: 901px) {
+  :where(html[data-aesthetic='vintage']) .sidebar-note {
+    display: none;
+  }
+}
+
+/* Vintage finishing details, kept tonal for a softer everyday workspace. */
+html[data-aesthetic='vintage'] {
+  --background: #e7dccb;
+  --surface: #efe6d8;
+  --sidebar: #ddd0bb;
+  --border: #c8b599;
+  --accent-soft: #dfceb4;
+}
+html[data-aesthetic='vintage'].dark {
+  --background: #27221d;
+  --surface: #342b23;
+  --sidebar: #2d251e;
+  --border: #685440;
+  --accent-soft: #493928;
+}
+:where(html[data-aesthetic='vintage']) .brand {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -1.3px;
+}
+:where(html[data-aesthetic='vintage']) .brand-icon {
+  border-radius: 50%;
+  width: 33px;
+  height: 33px;
+}
+:where(html[data-aesthetic='vintage']) .page-heading h1,
+:where(html[data-aesthetic='vintage']) .auth-story h1 {
+  font-style: italic;
+}
+:where(html[data-aesthetic='vintage']) .button {
+  border-radius: 22px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+:where(html[data-aesthetic='vintage']) .button.primary {
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--accent) 65%, var(--text));
+}
+:where(html[data-aesthetic='vintage']) .button.primary:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+:where(html[data-aesthetic='vintage']) .nav-item.active {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+}
+:where(html[data-aesthetic='vintage']) .summary-card {
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--border) 45%, transparent);
+}
+:where(html[data-aesthetic='vintage']) .summary-card > strong {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 38px;
+}
+:where(html[data-aesthetic='vintage']) .panel-title h2,
+:where(html[data-aesthetic='vintage']) .chart-heading h2,
+:where(html[data-aesthetic='vintage']) .settings-heading h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+:where(html[data-aesthetic='vintage']) .eyebrow,
+:where(html[data-aesthetic='vintage']) .section-kicker {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+:where(html[data-aesthetic='vintage']) .applications-panel {
+  border-radius: 16px;
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--border) 40%, transparent);
+}
+:where(html[data-aesthetic='vintage']) .application-tabs > button {
+  border-bottom-width: 3px;
+}
+:where(html[data-aesthetic='vintage']) .auth-preview {
+  border: 1px solid var(--border);
+  box-shadow: 4px 4px 0 var(--accent-soft);
+}
+@media (max-width: 680px) {
+  :where(html[data-aesthetic='vintage']) .panel-title h2,
+  :where(html[data-aesthetic='vintage']) .chart-heading h2,
+  :where(html[data-aesthetic='vintage']) .settings-heading h2 {
+    font-size: 23px;
+  }
+  :where(html[data-aesthetic='vintage']) .summary-card > strong {
+    font-size: 34px;
+  }
+}
+
+/* Shared picker stays usable in every aesthetic and color mode. */
+:where(html[data-aesthetic]:not([data-aesthetic='original'])) body {
+  font-family: var(--font-sans);
+}
+:where(html[data-aesthetic='retro']) .app-layout {
+  padding-bottom: 18px;
+}
+:where(html[data-aesthetic='retro']) .sidebar {
+  bottom: 18px;
+}
+:where(html[data-aesthetic='retro']) .main-shell {
+  min-height: calc(100dvh - 36px);
+}
+:where(html[data-aesthetic='retro']) .toast {
+  bottom: 24px;
+}
+.aesthetic-options {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.aesthetic-option {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-width: 0;
+}
+.aesthetic-option[aria-pressed='true'] {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.aesthetic-option:focus-visible {
+  outline: 3px dashed var(--accent);
+  outline-offset: 4px;
+}
+.aesthetic-option-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 2px 5px;
+  font:
+    600 16px/1.3 Arial,
+    sans-serif;
+}
+.aesthetic-option-description {
+  margin: 0 2px 4px;
+  color: var(--muted);
+  font:
+    14px/1.5 Arial,
+    sans-serif;
+}
+.aesthetic-preview {
+  display: flex;
+  height: 125px;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f8faf9;
+  border: 1px solid #cad7d0;
+  color: #25322f;
+}
+.aesthetic-preview-nav {
+  width: 22%;
+  flex-shrink: 0;
+  background: #eaf4ee;
+  border-right: 1px solid #cad7d0;
+}
+.aesthetic-preview-content {
+  padding: 13px;
+  flex: 1;
+  min-width: 0;
+}
+.aesthetic-preview-content b {
+  font:
+    700 17px/1.2 Arial,
+    sans-serif;
+  display: block;
+}
+.aesthetic-preview-metrics {
+  display: flex;
+  gap: 5px;
+  margin: 12px 0 7px;
+}
+.aesthetic-preview-metrics i {
+  height: 20px;
+  flex: 1;
+  border-radius: 4px;
+  background: #d3e6da;
+}
+.aesthetic-preview-table {
+  display: block;
+  height: 23px;
+  background: repeating-linear-gradient(#e0e8e3 0 1px, transparent 1px 8px);
+}
+.aesthetic-preview-retro {
+  background: #c0c0c0;
+  border-radius: 0;
+  border: 2px outset #eee;
+  color: #111;
+}
+.aesthetic-preview-retro .aesthetic-preview-nav {
+  background: #008080;
+  border-color: #808080;
+}
+.aesthetic-preview-retro b {
+  background: #000080;
+  color: #fff;
+  font:
+    bold 14px Tahoma,
+    sans-serif;
+  padding: 3px;
+}
+.aesthetic-preview-retro .aesthetic-preview-metrics i {
+  border-radius: 0;
+  background: #ddd;
+  border: 2px outset #eee;
+}
+.aesthetic-preview-retro .aesthetic-preview-table {
+  background: repeating-linear-gradient(#888 0 1px, #fff 1px 8px);
+}
+.aesthetic-preview-swiss {
+  background: #f4f4ef;
+  border: 1px solid #111;
+  border-radius: 0;
+  color: #111;
+}
+.aesthetic-preview-swiss .aesthetic-preview-nav {
+  background: #ff4b23;
+  border-right: 2px solid #111;
+}
+.aesthetic-preview-swiss b {
+  font:
+    800 23px/0.9 Arial,
+    sans-serif;
+  letter-spacing: -1px;
+}
+.aesthetic-preview-swiss .aesthetic-preview-metrics i {
+  background: #111;
+  border-radius: 0;
+}
+.aesthetic-preview-swiss .aesthetic-preview-table {
+  background: repeating-linear-gradient(#111 0 1px, transparent 1px 8px);
+}
+.aesthetic-preview-vintage {
+  background: #efe6d8;
+  color: #795943;
+  border-color: #c8b599;
+  border-radius: 10px;
+}
+.aesthetic-preview-vintage .aesthetic-preview-nav {
+  background: #ddd0bb;
+  border-color: #c8b599;
+}
+.aesthetic-preview-vintage b {
+  font:
+    italic 22px/1 Georgia,
+    serif;
+}
+.aesthetic-preview-vintage .aesthetic-preview-metrics i {
+  background: #dfceb4;
+  border-radius: 6px;
+}
+.aesthetic-preview-vintage .aesthetic-preview-table {
+  background: repeating-linear-gradient(#c8b599 0 1px, transparent 1px 8px);
+}
+.aesthetic-footer p {
+  color: var(--muted);
+  font:
+    13px/1.5 Arial,
+    sans-serif;
+  margin-right: auto;
+  max-width: 350px;
+}
+@media (max-width: 430px) {
+  .aesthetic-options {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .aesthetic-preview {
+    height: 115px;
+  }
+  .aesthetic-footer {
+    flex-wrap: wrap;
+  }
+}

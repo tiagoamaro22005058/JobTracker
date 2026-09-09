@@ -15,11 +15,13 @@ import {
   Menu,
   Check,
   X,
+  Palette,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useApplications } from '@/hooks/use-applications';
 import { createClient } from '@/lib/supabase/client';
 import { Logo } from './logo';
+import { ThemePicker } from './theme-picker';
 const navigation = [
   ['dashboard', 'Dashboard', LayoutDashboard],
   ['applications', 'Applications', BriefcaseBusiness],
@@ -33,6 +35,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  const [themesOpen, setThemesOpen] = useState(false);
   const section = pathname.split('/').filter(Boolean).at(-1);
   const current = section === 'demo' ? 'dashboard' : section;
   async function logout() {
@@ -97,14 +100,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           ))}
         </nav>
         <div className="sidebar-bottom">
-          <div className="sidebar-note">
-            <span className="small-spark">✳</span>
-            <strong>Small steps. Big moves.</strong>
-            <p>Every application is a step toward your next opportunity.</p>
-            <Link href={demo ? '/demo/statistics' : '/statistics'}>
-              See your progress <ArrowUpRight size={15} />
-            </Link>
-          </div>
+          <button className="nav-item" aria-haspopup="dialog" onClick={() => setThemesOpen(true)}>
+            <Palette size={19} />
+            Themes
+          </button>
           <button
             className="nav-item theme-toggle"
             onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
@@ -170,6 +169,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
+      {themesOpen && <ThemePicker onClose={() => setThemesOpen(false)} />}
       {toast && (
         <div className="toast" role="status">
           <Check size={17} />

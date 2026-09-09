@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Providers } from '@/components/providers';
+import { aestheticBootstrap } from '@/lib/aesthetics';
 import './globals.css';
+import './aesthetics.css';
 export const metadata: Metadata = {
   title: { default: 'JobTrack — Your next chapter', template: '%s · JobTrack' },
   description:
@@ -9,6 +11,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: aestheticBootstrap }} />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
