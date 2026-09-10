@@ -62,6 +62,14 @@ Alternatively, with the Supabase CLI configured and linked to your project, run 
 
 An anon/publishable key cannot create tables, run migrations, or administer your project. The SQL Editor or authenticated Supabase CLI is required. The schema does not create sample records or change other tables.
 
+### Automatic Ghosted status
+
+After the initial schema, run `supabase/migrations/20260910170232_auto_ghost_inactive_applications.sql` once. It adds a server-controlled `status_changed_at` timestamp, a partial index, and the `jobtrack-auto-ghost` Supabase Cron job. Every day at 03:00 UTC, Applied and Waiting rows with at least 30 days in their current status become Ghosted. The update is atomic and rechecks status, so other stages are excluded. View run results under Supabase Integrations → Cron. No Vercel cron, external endpoint, or service-role key is required.
+
+New records start their clock when created. Existing rows start from their last update because earlier status history is unavailable. Changing status resets the clock; note and detail edits (including re-saving the same status) preserve it. Restoring Ghosted to Applied or Waiting gives another 30 days. Records are retained, and ordinary ownership policies remain in place. Refresh the workspace to see scheduled changes. The separate local demo applies the same rule when opened or reloaded.
+
+Run `supabase/tests/auto_ghost.sql` in the SQL Editor to verify the scheduled query and trigger on temporary fixtures. The script rolls back and does not change real applications.
+
 ### Ownership and permissions
 
 `applications.user_id` references `auth.users.id` with cascade deletion. Every SELECT/INSERT/UPDATE/DELETE policy compares this value to `auth.uid()`. The authenticated role can insert only editable fields and its user ID; it can update only editable fields. IDs, ownership, creation timestamps, and update timestamps cannot be overwritten by client updates. Anonymous users have no table privileges.

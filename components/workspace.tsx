@@ -127,6 +127,13 @@ export function Workspace({ allApplications = false }: { allApplications?: boole
           />
         )}
       </section>
+      <p className="statistics-note">
+        Applied and Waiting applications move to Ghosted after 30 days in the same status.
+        {demo
+          ? ' The demo checks when you open or reload it.'
+          : ' Checked daily; refresh to see the latest status.'}{' '}
+        You can change the status again at any time.
+      </p>
       {!allApplications && !loading && !error && (
         <div className="dashboard-bottom">
           <section className="momentum-card">

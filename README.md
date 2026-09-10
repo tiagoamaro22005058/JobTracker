@@ -50,6 +50,8 @@ Statistics reflect **current application statuses**, rather than a history of ev
 
 ## Try it in minutes
 
+Applied and Waiting applications automatically move to **Ghosted after 30 days in the same status**. The database checks daily at 03:00 UTC, even when the app is closed. Changing status restarts the timer; editing notes does not. You can change Ghosted back to another status at any time. Existing applications use their last recorded update as the initial baseline. The browser-local demo checks on open/reload.
+
 1. **Explore:** open the [demo](https://jobtracker-eight-brown.vercel.app/demo) to try sample applications, filters, editing, and analytics.
 2. **Create your workspace:** [register](https://jobtracker-eight-brown.vercel.app/register) and confirm your email.
 3. **Add your opportunities:** record a role, keep your notes together, and update its status as you progress.
@@ -89,7 +91,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 
 Then complete the one-time Supabase setup:
 
-1. Run the [initial migration](supabase/migrations/202609080001_applications.sql) in your project's SQL Editor.
+1. Run the [initial migration](supabase/migrations/202609080001_applications.sql), then the [automatic Ghosted migration](supabase/migrations/20260910170232_auto_ghost_inactive_applications.sql) in your project's SQL Editor.
 2. Enable email/password authentication and configure the [authentication URLs](docs/SETUP.md#configure-authentication), including `http://localhost:3000/auth/callback`.
 3. Start the app:
 

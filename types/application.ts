@@ -26,8 +26,12 @@ export type Application = {
   notes: string;
   created_at: string;
   updated_at: string;
+  status_changed_at?: string;
 };
-export type ApplicationInput = Omit<Application, 'id' | 'user_id' | 'created_at' | 'updated_at'>;
+export type ApplicationInput = Omit<
+  Application,
+  'id' | 'user_id' | 'created_at' | 'updated_at' | 'status_changed_at'
+>;
 export type Database = {
   public: {
     Tables: {

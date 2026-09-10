@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 import { useRouter } from 'next/navigation';
 import type { Application, ApplicationInput } from '@/types/application';
 import { demoApplications } from '@/lib/demo';
+import { applyDemoAutoGhost } from '@/lib/auto-ghost';
 import { applicationService, SessionExpiredError } from '@/services/applications';
 type Context = {
   applications: Application[];
@@ -39,7 +40,9 @@ export function ApplicationProvider({
   const read = useCallback(async (): Promise<Application[]> => {
     if (!demo) return applicationService.list();
     const saved = localStorage.getItem(storageKey);
-    return saved ? JSON.parse(saved) : demoApplications();
+    const data = applyDemoAutoGhost(saved ? JSON.parse(saved) : demoApplications());
+    localStorage.setItem(storageKey, JSON.stringify(data));
+    return data;
   }, [demo]);
   const handleLoadError = useCallback(
     (error: unknown) => {
@@ -99,9 +102,25 @@ export function ApplicationProvider({
   async function save(input: ApplicationInput, id?: string) {
     if (demo) {
       const now = new Date().toISOString();
+      const previous = applications.find((a) => a.id === id);
       const app = id
-        ? { ...applications.find((a) => a.id === id)!, ...input, updated_at: now }
-        : { ...input, id: crypto.randomUUID(), user_id: 'demo', created_at: now, updated_at: now };
+        ? {
+            ...previous!,
+            ...input,
+            updated_at: now,
+            status_changed_at:
+              previous?.status === input.status
+                ? previous.status_changed_at || previous.updated_at
+                : now,
+          }
+        : {
+            ...input,
+            id: crypto.randomUUID(),
+            user_id: 'demo',
+            created_at: now,
+            updated_at: now,
+            status_changed_at: now,
+          };
       persist(id ? applications.map((a) => (a.id === id ? app : a)) : [app, ...applications]);
     } else {
       const saved = await authenticated(() =>
@@ -117,7 +136,17 @@ export function ApplicationProvider({
     if (demo)
       persist(
         applications.map((a) =>
-          a.id === id ? { ...a, status, updated_at: new Date().toISOString() } : a,
+          a.id === id
+            ? {
+                ...a,
+                status,
+                updated_at: new Date().toISOString(),
+                status_changed_at:
+                  a.status === status
+                    ? a.status_changed_at || a.updated_at
+                    : new Date().toISOString(),
+              }
+            : a,
         ),
       );
     else {
