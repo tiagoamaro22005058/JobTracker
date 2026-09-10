@@ -37,7 +37,7 @@ export function ApplicationDetails({
               Open original posting <ExternalLink size={14} />
             </a>
           ) : (
-            <strong>No link added</strong>
+            <strong>N/A</strong>
           )}
         </div>
         <div className="full-width">

@@ -2511,3 +2511,29 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+.job-url-field > input {
+  margin-top: 7px;
+}
+.application-form .job-url-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.application-form .job-url-option input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.job-url-field > input:disabled {
+  color: var(--muted);
+  background: var(--surface-hover);
+}

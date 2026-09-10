@@ -171,7 +171,7 @@ export function ApplicationTable({
                       View <ExternalLink size={13} />
                     </a>
                   ) : (
-                    <span className="muted">—</span>
+                    <span className="muted">N/A</span>
                   )}
                 </td>
                 <td>

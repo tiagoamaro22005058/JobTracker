@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { ArrowUpRight, LoaderCircle } from 'lucide-react';
 import { STATUSES, type Application, type ApplicationInput } from '@/types/application';
 import { applicationSchema, localDate } from '@/lib/applications';
@@ -13,6 +13,9 @@ export function ApplicationForm({
   onClose: () => void;
 }) {
   const { save } = useApplications();
+  const jobUrlId = useId();
+  const [jobUrl, setJobUrl] = useState(application?.job_link || '');
+  const [noJobUrl, setNoJobUrl] = useState(!!application && !application.job_link);
   const [pending, setPending] = useState(false),
     [error, setError] = useState('');
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -69,16 +72,28 @@ export function ApplicationForm({
                 placeholder="e.g. Product Designer"
               />
             </label>
-            <label className="full-width">
-              Job URL
+            <div className="full-width job-url-field">
+              <label htmlFor={jobUrlId}>Job URL (optional)</label>
               <input
+                id={jobUrlId}
                 name="job_link"
                 type="url"
-                defaultValue={application?.job_link}
+                value={noJobUrl ? '' : jobUrl}
+                onChange={(event) => setJobUrl(event.target.value)}
+                disabled={noJobUrl}
                 maxLength={2048}
-                placeholder="https://company.com/careers/role"
+                placeholder={noJobUrl ? 'N/A' : 'https://company.com/careers/role'}
               />
-            </label>
+              {noJobUrl && <input type="hidden" name="job_link" value="" />}
+              <label className="job-url-option">
+                <input
+                  type="checkbox"
+                  checked={noJobUrl}
+                  onChange={(event) => setNoJobUrl(event.target.checked)}
+                />
+                N/A — no job URL
+              </label>
+            </div>
             <label>
               Location
               <input
