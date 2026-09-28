@@ -119,7 +119,7 @@ describe('Filtering and sorting', () => {
     ).toEqual(['new', 'old']);
   });
   it('does not include closed outcomes in active applications', () => {
-    const closed = ['Accepted', 'Rejected', 'Ghosted', 'Withdrawn'] as const;
+    const closed = ['Accepted', 'Rejected', 'Ghosted', 'Withdrawn', 'Declined by me'] as const;
     expect(
       filterApplications(
         closed.map((status, i) => ({ ...application, status, id: String(i) })),
@@ -129,6 +129,17 @@ describe('Filtering and sorting', () => {
   });
 });
 describe('Statistics', () => {
+  it('keeps personal declines closed and separate from company rejections', () => {
+    const declined = { ...application, status: 'Declined by me' as const };
+    expect(applicationSchema.safeParse({ ...input, status: declined.status }).success).toBe(true);
+    expect(filterApplications([declined], { ...defaultFilters, group: 'closed' })).toEqual([
+      declined,
+    ]);
+    expect(filterApplications([declined], { ...defaultFilters, status: 'Declined by me' })).toEqual(
+      [declined],
+    );
+    expect(summarize([declined])).toMatchObject({ total: 1, rejected: 0, offers: 0, accepted: 0 });
+  });
   it('returns zero rates for an empty workspace', () => {
     expect(summarize([])).toMatchObject({
       total: 0,

@@ -12,6 +12,7 @@ export const STATUSES = [
   'Rejected',
   'Ghosted',
   'Withdrawn',
+  'Declined by me',
 ] as const;
 export type Status = (typeof STATUSES)[number];
 export type Application = {

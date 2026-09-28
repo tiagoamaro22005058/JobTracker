@@ -39,6 +39,7 @@ export const statusTone = (status: Status) =>
     Rejected: 'red',
     Ghosted: 'gray',
     Withdrawn: 'stone',
+    'Declined by me': 'amber',
   })[status];
 export const localDate = (date = new Date()) =>
   `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -72,11 +73,11 @@ export function filterApplications(apps: Application[], f: Filters) {
       const matchesGroup =
         f.group === 'all' ||
         (f.group === 'active' &&
-          !['Rejected', 'Ghosted', 'Withdrawn', 'Accepted'].includes(a.status)) ||
+          !['Rejected', 'Ghosted', 'Withdrawn', 'Declined by me', 'Accepted'].includes(a.status)) ||
         (f.group === 'interviews' && isInterview(a.status)) ||
         (f.group === 'offers' && ['Offer', 'Accepted'].includes(a.status)) ||
         (f.group === 'closed' &&
-          ['Rejected', 'Ghosted', 'Withdrawn', 'Accepted'].includes(a.status));
+          ['Rejected', 'Ghosted', 'Withdrawn', 'Declined by me', 'Accepted'].includes(a.status));
       return (
         matchesGroup &&
         [a.company_name, a.position, a.location].some((v) =>

@@ -30,7 +30,8 @@ export function Workspace({ allApplications = false }: { allApplications?: boole
       'active',
       'Active',
       applications.filter(
-        (a) => !['Accepted', 'Rejected', 'Ghosted', 'Withdrawn'].includes(a.status),
+        (a) =>
+          !['Accepted', 'Rejected', 'Ghosted', 'Withdrawn', 'Declined by me'].includes(a.status),
       ).length,
     ],
     ['interviews', 'Interviews', stats.interviews],
@@ -39,7 +40,7 @@ export function Workspace({ allApplications = false }: { allApplications?: boole
       'closed',
       'Closed',
       applications.filter((a) =>
-        ['Accepted', 'Rejected', 'Ghosted', 'Withdrawn'].includes(a.status),
+        ['Accepted', 'Rejected', 'Ghosted', 'Withdrawn', 'Declined by me'].includes(a.status),
       ).length,
     ],
   ];

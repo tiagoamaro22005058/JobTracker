@@ -29,6 +29,7 @@ const colors = [
   '#d87d78',
   '#8c94a3',
   '#a38e7b',
+  '#a58437',
 ];
 const tooltipStyle = {
   border: '1px solid var(--border)',

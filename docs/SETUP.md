@@ -9,7 +9,7 @@ A private job application tracker built with Next.js, TypeScript, Tailwind CSS, 
 - Registration, password login, email confirmation, logout, and persistent cookie sessions.
 - Protected Dashboard, Applications, Statistics, and Profile pages.
 - Create, inspect, edit, and delete applications, with confirmation before deletion.
-- All 13 requested statuses, with distinct badges and inline status updates.
+- All 14 requested statuses, with distinct badges and inline status updates.
 - Live search across company, position, and location; combined status, company, and date filters.
 - Ascending and descending sorting by company, position, application date, pipeline status, or last updated.
 - Paginated spreadsheet view, summary cards, and three interactive Recharts charts.
@@ -100,14 +100,16 @@ Register an account and open the confirmation email. When opened in the same bro
 | `job_link`         | text        | Optional http/https URL, max 2,048 characters |
 | `location`         | text        | Optional, max 200 characters                  |
 | `application_date` | date        | Required calendar date                        |
-| `status`           | text        | Required, constrained to the 13 statuses      |
+| `status`           | text        | Required, constrained to the 14 statuses      |
 | `notes`            | text        | Optional, max 10,000 characters               |
 | `created_at`       | timestamptz | Database controlled                           |
 | `updated_at`       | timestamptz | Updated automatically by database trigger     |
 
-Statuses: Interested, Applied, Waiting, Interview #1, Interview #2, Interview #3, Technical Interview, Final Interview, Offer, Accepted, Rejected, Ghosted, and Withdrawn.
+Statuses: Interested, Applied, Waiting, Interview #1, Interview #2, Interview #3, Technical Interview, Final Interview, Offer, Accepted, Rejected, Ghosted, Withdrawn, and Declined by me.
 
 ## Statistics definitions
+
+Run `supabase/migrations/20260928150012_declined_by_me_status.sql` after the earlier migrations to enable **Declined by me**. Use it when you decide against an opportunity. **Rejected** remains for company rejections; **Withdrawn** remains available for withdrawing an application. Personal declines appear in Closed and the status chart, not in the company rejection count, and are excluded from automatic Ghosted transitions.
 
 Statistics use current records, with no inferred status history:
 
@@ -118,7 +120,7 @@ Statistics use current records, with no inferred status history:
 - **Interview rate:** currently interviewing / total applications × 100.
 - **Offer rate:** (Offer + Accepted) / total applications × 100.
 - **This month:** application date is in the current local calendar month.
-- **Active:** excludes Accepted, Rejected, Ghosted, and Withdrawn.
+- **Active:** excludes Accepted, Rejected, Ghosted, Withdrawn, and Declined by me.
 
 Rates are rounded to the nearest whole percent; empty data produces 0%. Charts show daily applications over 30 days, monthly applications over six months, and current status totals. A completed interview is no longer counted under Interviews after its status changes to Offer, for example. Historical conversion rates would require a separate status history table.
 

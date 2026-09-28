@@ -32,7 +32,7 @@ Use your account to save applications across sessions, or explore the [interacti
 | Capability                   | How it helps                                                                                                          |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | **Application workspace**    | Create, view, edit, and delete applications with company, position, location, date, job link, and notes.              |
-| **13 pipeline statuses**     | Follow each opportunity through interview rounds and a final outcome. Update statuses directly in the table.          |
+| **14 pipeline statuses**     | Follow each opportunity through interview rounds and a final outcome. Update statuses directly in the table.          |
 | **Search and filters**       | Search companies, roles, and locations; combine status, company, and date filters; sort and browse a paginated table. |
 | **Dashboard and statistics** | Review summary cards, current status totals, daily and monthly application activity, and interview and offer rates.   |
 | **Personal accounts**        | Register, confirm your email, sign in, and manage your profile. Application access is scoped to its owner.            |
@@ -40,11 +40,13 @@ Use your account to save applications across sessions, or explore the [interacti
 
 ### From first interest to final decision
 
+Use **Declined by me** when you decide against an opportunity, and **Rejected** when the company rejects your application.
+
 | Stage                  | Available statuses                                                                 |
 | ---------------------- | ---------------------------------------------------------------------------------- |
 | Getting started        | Interested · Applied · Waiting                                                     |
 | Interviewing           | Interview #1 · Interview #2 · Interview #3 · Technical Interview · Final Interview |
-| Decisions and outcomes | Offer · Accepted · Rejected · Ghosted · Withdrawn                                  |
+| Decisions and outcomes | Offer · Accepted · Rejected · Ghosted · Withdrawn · Declined by me                 |
 
 Statistics reflect **current application statuses**, rather than a history of every stage. An application that moves to Offer leaves the current interview count. See [metric definitions](docs/SETUP.md#statistics-definitions) for the exact calculations.
 
@@ -91,7 +93,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 
 Then complete the one-time Supabase setup:
 
-1. Run the [initial migration](supabase/migrations/202609080001_applications.sql), then the [automatic Ghosted migration](supabase/migrations/20260910170232_auto_ghost_inactive_applications.sql) in your project's SQL Editor.
+1. Run the [initial migration](supabase/migrations/202609080001_applications.sql), then the [automatic Ghosted migration](supabase/migrations/20260910170232_auto_ghost_inactive_applications.sql) and [personal decline migration](supabase/migrations/20260928150012_declined_by_me_status.sql) in your project's SQL Editor.
 2. Enable email/password authentication and configure the [authentication URLs](docs/SETUP.md#configure-authentication), including `http://localhost:3000/auth/callback`.
 3. Start the app:
 
