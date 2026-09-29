@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import {
   LayoutDashboard,
+  Compass,
   ChartNoAxesCombined,
   UserRound,
   LogOut,
@@ -23,6 +24,7 @@ import { Logo } from './logo';
 import { ThemePicker } from './theme-picker';
 const navigation = [
   ['dashboard', 'Dashboard', LayoutDashboard],
+  ['find-jobs', 'Find jobs', Compass],
   ['statistics', 'Statistics', ChartNoAxesCombined],
   ['profile', 'Profile', UserRound],
 ] as const;

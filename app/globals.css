@@ -2537,3 +2537,108 @@ p {
   color: var(--muted);
   background: var(--surface-hover);
 }
+
+/* Job search directory uses the active theme palette. */
+.job-directory {
+  display: grid;
+  gap: 30px;
+  padding-bottom: 24px;
+}
+.job-directory-note {
+  color: var(--muted);
+  margin: 0;
+  font-size: 13px;
+}
+.job-directory-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.job-directory-heading > svg {
+  color: var(--accent);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.job-directory-heading h2 {
+  font-size: 17px;
+  margin: 0 0 4px;
+}
+.job-directory-heading p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 13px;
+}
+.job-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.job-site-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition:
+    border-color 0.16s,
+    background 0.16s;
+}
+.job-site-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+}
+.job-site-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.job-site-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--accent-soft);
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.job-site-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+.job-site-card > p {
+  color: var(--muted);
+  margin: 0 0 24px;
+  line-height: 1.7;
+}
+.job-site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+  font-size: 12px;
+}
+.job-site-footer > span {
+  color: var(--muted);
+}
+.job-site-footer strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+}
+@media (max-width: 640px) {
+  .job-directory-grid {
+    grid-template-columns: 1fr;
+  }
+  .job-site-card {
+    padding: 20px;
+  }
+}
