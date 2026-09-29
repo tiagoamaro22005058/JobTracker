@@ -5,6 +5,7 @@ import { useState } from 'react';
 import {
   LayoutDashboard,
   Compass,
+  Mail,
   ChartNoAxesCombined,
   UserRound,
   LogOut,
@@ -25,6 +26,7 @@ import { ThemePicker } from './theme-picker';
 const navigation = [
   ['dashboard', 'Dashboard', LayoutDashboard],
   ['find-jobs', 'Find jobs', Compass],
+  ['emails', 'Emails', Mail],
   ['statistics', 'Statistics', ChartNoAxesCombined],
   ['profile', 'Profile', UserRound],
 ] as const;

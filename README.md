@@ -29,15 +29,16 @@ Use your account to save applications across sessions, or explore the [interacti
 
 ## What you can do
 
-| Capability                   | How it helps                                                                                                          |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Application workspace**    | Create, view, edit, and delete applications with company, position, location, date, job link, and notes.              |
-| **14 pipeline statuses**     | Follow each opportunity through interview rounds and a final outcome. Update statuses directly in the table.          |
-| **Search and filters**       | Search companies, roles, and locations; combine status, company, and date filters; sort and browse a paginated table. |
-| **Dashboard and statistics** | Review summary cards, current status totals, daily and monthly application activity, and interview and offer rates.   |
-| **Find jobs**                | Explore LinkedIn, Indeed, Portugal-focused job boards, and remote-work sites from one page. Links open in a new tab.  |
-| **Personal accounts**        | Register, confirm your email, sign in, and manage your profile. Application access is scoped to its owner.            |
-| **Flexible appearance**      | Switch between light, dark, and system themes, with responsive navigation and keyboard-accessible dialogs.            |
+| Capability                   | How it helps                                                                                                                                         |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Application workspace**    | Create, view, edit, and delete applications with company, position, location, date, job link, and notes.                                             |
+| **14 pipeline statuses**     | Follow each opportunity through interview rounds and a final outcome. Update statuses directly in the table.                                         |
+| **Search and filters**       | Search companies, roles, and locations; combine status, company, and date filters; sort and browse a paginated table.                                |
+| **Dashboard and statistics** | Review summary cards, current status totals, daily and monthly application activity, and interview and offer rates.                                  |
+| **Find jobs**                | Explore LinkedIn, Indeed, Portugal-focused job boards, and remote-work sites from one page. Links open in a new tab.                                 |
+| **Gmail inbox**              | Connect Gmail for read-only inbox browsing, plain-text message reading, refresh, and disconnect. Requires [Google OAuth setup](docs/GMAIL_SETUP.md). |
+| **Personal accounts**        | Register, confirm your email, sign in, and manage your profile. Application access is scoped to its owner.                                           |
+| **Flexible appearance**      | Switch between light, dark, and system themes, with responsive navigation and keyboard-accessible dialogs.                                           |
 
 ### From first interest to final decision
 

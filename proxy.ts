@@ -18,9 +18,10 @@ export async function proxy(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const protectedPage = /^\/(dashboard|applications|statistics|profile)(\/|$)/.test(
-    request.nextUrl.pathname,
-  );
+  const protectedPage =
+    /^\/(dashboard|applications|statistics|profile|find-jobs|emails)(\/|$)/.test(
+      request.nextUrl.pathname,
+    );
   if (!user && protectedPage) {
     const redirect = NextResponse.redirect(redirectUrl(request, '/login'));
     redirect.headers.set('Cache-Control', 'private, no-store');
@@ -36,6 +37,8 @@ export const config = {
     '/applications/:path*',
     '/statistics/:path*',
     '/profile/:path*',
+    '/find-jobs/:path*',
+    '/emails/:path*',
     '/api/:path*',
     '/auth/:path*',
     '/login',

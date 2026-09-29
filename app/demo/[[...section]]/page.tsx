@@ -5,18 +5,21 @@ import { Workspace } from '@/components/workspace';
 import { Statistics } from '@/components/statistics';
 import { Profile } from '@/components/profile';
 import { FindJobs } from '@/components/find-jobs';
+import { Emails } from '@/components/emails';
 export default async function Demo({ params }: { params: Promise<{ section?: string[] }> }) {
   const { section } = await params;
   const page = section?.[0] || 'dashboard';
   if (
     (section?.length || 0) > 1 ||
-    !['dashboard', 'applications', 'statistics', 'profile', 'find-jobs'].includes(page)
+    !['dashboard', 'applications', 'statistics', 'profile', 'find-jobs', 'emails'].includes(page)
   )
     notFound();
   return (
     <ApplicationProvider demo name="Alex Morgan" email="alex@example.com">
       <AppShell>
-        {page === 'find-jobs' ? (
+        {page === 'emails' ? (
+          <Emails demo />
+        ) : page === 'find-jobs' ? (
           <FindJobs />
         ) : page === 'statistics' ? (
           <Statistics />
