@@ -4,7 +4,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import {
   LayoutDashboard,
-  BriefcaseBusiness,
   ChartNoAxesCombined,
   UserRound,
   LogOut,
@@ -24,12 +23,11 @@ import { Logo } from './logo';
 import { ThemePicker } from './theme-picker';
 const navigation = [
   ['dashboard', 'Dashboard', LayoutDashboard],
-  ['applications', 'Applications', BriefcaseBusiness],
   ['statistics', 'Statistics', ChartNoAxesCombined],
   ['profile', 'Profile', UserRound],
 ] as const;
 export function AppShell({ children }: { children: React.ReactNode }) {
-  const { demo, name, email, applications, toast, notify } = useApplications();
+  const { demo, name, email, toast, notify } = useApplications();
   const pathname = usePathname();
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
@@ -95,7 +93,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             >
               <Icon size={19} />
               {label}
-              {route === 'applications' && <span className="nav-count">{applications.length}</span>}
             </Link>
           ))}
         </nav>
@@ -145,7 +142,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </button>
             <span>Workspace</span>
             <span className="slash">/</span>
-            <strong>{navigation.find((n) => n[0] === current)?.[1] || 'Dashboard'}</strong>
+            <strong>
+              {current === 'applications'
+                ? 'Applications'
+                : navigation.find((n) => n[0] === current)?.[1] || 'Dashboard'}
+            </strong>
           </div>
           <div className="topbar-right">
             <span className="private-indicator">
