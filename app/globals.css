@@ -2806,6 +2806,10 @@ p {
 }
 
 /* Full-width email reading, with the inbox one step away. */
+.mail-page-heading-hidden,
+.mail-workspace.is-reading > .mail-toolbar {
+  display: none;
+}
 .mail-dismissible {
   display: flex;
   align-items: center;

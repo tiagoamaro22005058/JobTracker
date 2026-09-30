@@ -176,7 +176,7 @@ export function Emails({ demo = false, connection = '' }: { demo?: boolean; conn
   const selectedIndex = inbox?.messages?.findIndex((message) => message.id === selected?.id) ?? -1;
   return (
     <>
-      <div className="page-heading">
+      <div className={`page-heading ${selected ? 'mail-page-heading-hidden' : ''}`}>
         <div>
           <span className="eyebrow">KEEP THE CONVERSATION GOING</span>
           <h1>
@@ -239,7 +239,7 @@ export function Emails({ demo = false, connection = '' }: { demo?: boolean; conn
         </section>
       )}
       {inbox?.connected && (
-        <section className="settings-card mail-workspace">
+        <section className={`settings-card mail-workspace ${selected ? 'is-reading' : ''}`}>
           <div className="mail-toolbar">
             <div>
               <strong>{inbox.email}</strong>
