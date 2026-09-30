@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTheme } from 'next-themes';
 
 export function MailContent({ html, text }: { html?: string; text?: string }) {
-  const [images, setImages] = useState(false);
+  const [images, setImages] = useState(true);
   const [plain, setPlain] = useState(false);
   const { resolvedTheme } = useTheme();
   const dark = resolvedTheme === 'dark';
