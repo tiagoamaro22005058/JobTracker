@@ -62,7 +62,8 @@ You should see your latest inbox messages. Select a message to read it, use **Ol
 
 - One Gmail account per browser, bound to the signed-in JobTrack user.
 - Fifteen inbox messages per page, sender, subject, date, and unread indicator.
-- Plain-text message reading. HTML-only messages and attachments can be opened with **Open in Gmail**.
+- Formatted HTML emails in a full-width reader, with plain-text fallback and previous/next controls. Attachments can be opened with **Open in Gmail**.
+- HTML is sanitized and isolated in a sandboxed frame. Scripts, forms, embedded pages, and CSS network requests are blocked. External images remain hidden until you choose **Show images** for a message; doing so contacts the sender's image servers and may load tracking pixels. Links open in a new tab.
 - No automatic marking as read, sending, deleting, attachment downloads, or background synchronization.
 - Emails are fetched on demand and not saved to Supabase or browser local storage. The page keeps displayed emails in memory while open.
 - The refresh token is AES-256-GCM encrypted in an HttpOnly cookie with a 30-day lifetime. Only the server can decrypt it, and every mail request validates the signed-in JobTrack user. Access tokens remain server-side. Google may expire or revoke access sooner.

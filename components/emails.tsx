@@ -1,6 +1,16 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowUpRight, Mail, RefreshCw, Unplug } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  Mail,
+  RefreshCw,
+  Unplug,
+  X,
+} from 'lucide-react';
+import { MailContent } from './mail-content';
 
 type Message = {
   id: string;
@@ -9,6 +19,7 @@ type Message = {
   date: string;
   unread: boolean;
   body?: string;
+  html?: string;
 };
 type Inbox = {
   configured: boolean;
@@ -24,6 +35,7 @@ const demoMessages: Message[] = [
     from: 'Hiring team <careers@example.com>',
     date: '',
     unread: true,
+    html: '<div style="max-width:580px;margin:0 auto;padding:24px"><p style="color:#68ad95;font-size:18px;font-weight:bold">EXAMPLE CAREERS</p><h1>Your next chapter starts here.</h1><p>Hi Alex,</p><p>Thanks for applying! We would love to learn more about your experience.</p><table style="width:100%;border:1px solid #69857a;border-radius:8px"><tr><td style="padding:20px"><h2>Let’s meet</h2><p>A short conversation with our hiring team about your experience and the role.</p><a href="https://example.com" target="_blank" rel="noopener noreferrer" style="color:#68ad95;font-weight:bold">View interview details →</a></td></tr></table><p>Best,<br>The hiring team</p><hr><p style="font-size:12px">This is a sample email for the JobTrack demo.</p></div>',
     body: 'Hi Alex,\n\nThanks for applying! We would love to learn more about your experience. Are you available for a short interview next week?\n\nBest,\nThe hiring team\n\nThis is a sample email for the JobTrack demo.',
   },
   {
@@ -42,6 +54,20 @@ const notices: Record<string, string> = {
   permission: 'Please allow read-only Gmail access to connect your inbox.',
   failed: 'Gmail could not be connected. Please try again or check the Gmail setup.',
 };
+function senderName(from: string) {
+  return from.replace(/\s*<[^>]*>\s*$/, '').replace(/^"|"$/g, '') || from;
+}
+function friendlyDate(value: string) {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? value || 'Sample email'
+    : new Intl.DateTimeFormat('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+      }).format(date);
+}
 async function requestJson(url: string, init?: RequestInit) {
   const response = await fetch(url, { ...init, cache: 'no-store' });
   const data = await response.json();
@@ -147,6 +173,7 @@ export function Emails({ demo = false, connection = '' }: { demo?: boolean; conn
       if (current === generation.current) setReading(false);
     }
   }
+  const selectedIndex = inbox?.messages?.findIndex((message) => message.id === selected?.id) ?? -1;
   return (
     <>
       <div className="page-heading">
@@ -160,9 +187,12 @@ export function Emails({ demo = false, connection = '' }: { demo?: boolean; conn
         </div>
       </div>
       {notice && (
-        <p className="mail-notice" role="status">
+        <div className="mail-notice mail-dismissible" role="status">
           {notice}
-        </p>
+          <button className="icon-button" aria-label="Dismiss notice" onClick={() => setNotice('')}>
+            <X size={16} />
+          </button>
+        </div>
       )}
       {error && (
         <div className="mail-notice error-message" role="alert">
@@ -247,10 +277,10 @@ export function Emails({ demo = false, connection = '' }: { demo?: boolean; conn
                   >
                     <span className="mail-sender">
                       {message.unread && <span className="mail-unread" aria-label="Unread" />}
-                      {message.from}
+                      {senderName(message.from)}
                     </span>
                     <strong>{message.subject}</strong>
-                    <small>{message.date || 'Sample email'}</small>
+                    <small title={message.date}>{friendlyDate(message.date)}</small>
                   </button>
                 ))
               ) : (
@@ -276,27 +306,64 @@ export function Emails({ demo = false, connection = '' }: { demo?: boolean; conn
             <div className="mail-reader" aria-live="polite" aria-busy={reading}>
               {selected ? (
                 <>
-                  <button
-                    className="text-link mail-back"
-                    onClick={() => {
-                      generation.current++;
-                      setSelected(null);
-                      setReading(false);
-                    }}
-                  >
-                    <ArrowLeft size={15} />
-                    Back to inbox
-                  </button>
-                  <h2>{selected.subject}</h2>
-                  <p className="mail-muted">{selected.from}</p>
-                  <p className="mail-muted">{selected.date}</p>
+                  <div className="mail-reading-toolbar">
+                    <button
+                      className="text-link mail-back"
+                      onClick={() => {
+                        generation.current++;
+                        setSelected(null);
+                        setReading(false);
+                      }}
+                    >
+                      <ArrowLeft size={15} />
+                      Back to inbox
+                    </button>
+                    <div className="mail-message-navigation">
+                      <span>
+                        {selectedIndex + 1} of {inbox.messages?.length} on this page
+                      </span>
+                      <button
+                        className="icon-button"
+                        aria-label="Previous email"
+                        disabled={selectedIndex <= 0 || busy}
+                        onClick={() => read(inbox.messages![selectedIndex - 1])}
+                      >
+                        <ChevronLeft size={19} />
+                      </button>
+                      <button
+                        className="icon-button"
+                        aria-label="Next email"
+                        disabled={
+                          selectedIndex < 0 ||
+                          selectedIndex >= (inbox.messages?.length || 0) - 1 ||
+                          busy
+                        }
+                        onClick={() => read(inbox.messages![selectedIndex + 1])}
+                      >
+                        <ChevronRight size={19} />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mail-message-heading">
+                    <h2>
+                      {selected.subject} <span className="mail-inbox-label">Inbox</span>
+                    </h2>
+                    <div className="mail-sender-heading">
+                      <span className="mail-sender-avatar" aria-hidden="true">
+                        {senderName(selected.from).slice(0, 1).toUpperCase()}
+                      </span>
+                      <div>
+                        <strong>{senderName(selected.from)}</strong>
+                        <p className="mail-muted">{selected.from}</p>
+                        <small className="mail-muted">to {inbox.email}</small>
+                      </div>
+                      <time title={selected.date}>{friendlyDate(selected.date)}</time>
+                    </div>
+                  </div>
                   {reading ? (
                     <p role="status">Loading email…</p>
                   ) : selected.body !== undefined ? (
-                    <pre className="mail-body">
-                      {selected.body ||
-                        'This email has no plain-text version. Open it in Gmail to view its formatting and attachments.'}
-                    </pre>
+                    <MailContent key={selected.id} html={selected.html} text={selected.body} />
                   ) : (
                     <p>Could not load this message. Select it again to retry.</p>
                   )}

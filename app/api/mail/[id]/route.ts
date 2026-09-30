@@ -1,6 +1,7 @@
 import { authenticatedClient } from '@/lib/api';
 import { gmailFetch, mailAccessToken, mailConnection, mailFailure, mailJson } from '@/lib/gmail';
 import { mailSummary, plainMailBody, type GmailMessage } from '@/lib/mail-message';
+import { htmlMailBody, sanitizeMailHtml } from '@/lib/mail-html';
 
 export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
   const auth = await authenticatedClient();
@@ -12,7 +13,11 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   try {
     const token = await mailAccessToken(connection);
     const message = await gmailFetch<GmailMessage>(`messages/${id}?format=full`, token);
-    return mailJson({ ...mailSummary(message), body: plainMailBody(message.payload) });
+    return mailJson({
+      ...mailSummary(message),
+      body: plainMailBody(message.payload),
+      html: sanitizeMailHtml(htmlMailBody(message.payload)),
+    });
   } catch (error) {
     return mailFailure(error);
   }
